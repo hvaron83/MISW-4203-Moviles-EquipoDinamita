@@ -1,4 +1,4 @@
-package com.uniandes.vinilosmobile
+package com.uniandes.vinilo
 
 import org.junit.Test
 
