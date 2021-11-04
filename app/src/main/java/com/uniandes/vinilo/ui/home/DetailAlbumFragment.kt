@@ -70,24 +70,11 @@ class DetailAlbumFragment : Fragment() {
     private fun setUiAlbum(album: Album) {
         with(mBinding){
             tvName.text = album.name
+            tvGenre.text = album.genre + "-" + album.recordLabel
+            tvDescription.text = album.description
             loadImage(album.cover)
         }
     }
-
-    //private fun String.editable(): Editable = Editable.Factory.getInstance().newEditable(this)
-
-
-
-    /*override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when(item.itemId){
-            android.R.id.home -> {
-                mActivity?.onBackPressed()
-                true
-            }
-
-            else -> super.onOptionsItemSelected(item)
-        }
-    }*/
 
 
     override fun onDestroyView() {

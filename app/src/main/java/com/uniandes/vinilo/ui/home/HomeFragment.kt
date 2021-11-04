@@ -61,7 +61,7 @@ class HomeFragment : Fragment(), OnClickListener {
         val fragmentManager = getActivity()?.supportFragmentManager
         val fragmentTransaction = fragmentManager?.beginTransaction()
 
-        fragmentTransaction?.add(R.id.container, fragment)
+        fragmentTransaction?.add(R.id.fragmentoHome, fragment)
         fragmentTransaction?.addToBackStack(null)
         fragmentTransaction?.commit()
     }
