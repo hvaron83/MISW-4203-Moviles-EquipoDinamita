@@ -12,6 +12,8 @@ import com.uniandes.vinilo.R
 import com.uniandes.vinilo.common.dto.Album
 import com.uniandes.vinilo.databinding.FragmentDetailAlbumBinding
 import com.uniandes.vinilo.ui.home.viewModel.DetailAlbumViewModel
+import java.text.SimpleDateFormat
+import java.util.*
 
 class DetailAlbumFragment : Fragment() {
 
@@ -52,11 +54,11 @@ class DetailAlbumFragment : Fragment() {
     }
 
     private fun setupActionBar() {
-        mActivity = activity as? MainActivity
+        mActivity = requireActivity() as? MainActivity
         mActivity?.supportActionBar?.setDisplayHomeAsUpEnabled(true)
         mActivity?.supportActionBar?.title = getString(R.string.detail_album_title)
 
-        setHasOptionsMenu(true)
+        setHasOptionsMenu(false)
     }
 
     private fun loadImage(url: String){
@@ -71,6 +73,11 @@ class DetailAlbumFragment : Fragment() {
         with(mBinding){
             tvName.text = album.name
             tvGenre.text = album.genre + "-" + album.recordLabel
+            val dateFormat_yyyyMMddHH = SimpleDateFormat(
+                "yyyy-MM-dd", Locale.ENGLISH
+            )
+            val date = dateFormat_yyyyMMddHH.parse(album.releaseDate)
+            tvDateRelease.text = dateFormat_yyyyMMddHH.format(date)
             tvDescription.text = album.description
             loadImage(album.cover)
         }
@@ -83,7 +90,7 @@ class DetailAlbumFragment : Fragment() {
 
     override fun onDestroy() {
         mActivity?.supportActionBar?.setDisplayHomeAsUpEnabled(false)
-        mActivity?.supportActionBar?.title = getString(R.string.app_name)
+        mActivity?.supportActionBar?.title = getString(R.string.title_home)
 
         setHasOptionsMenu(false)
         super.onDestroy()
