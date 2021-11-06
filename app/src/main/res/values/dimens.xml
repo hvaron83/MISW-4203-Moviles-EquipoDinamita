@@ -9,4 +9,6 @@
     <dimen name="common_padding_none">0dp</dimen>
     <dimen name="photo_size_thumb">88dp</dimen>
     <dimen name="dimen_photo_height">194dp</dimen>
+    <dimen name="card_img_size">50dp</dimen>
+    <dimen name="card_height">56dp</dimen>
 </resources>

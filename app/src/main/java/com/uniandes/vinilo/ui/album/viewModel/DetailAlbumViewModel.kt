@@ -1,6 +1,5 @@
-package com.uniandes.vinilo.ui.home.viewModel
+package com.uniandes.vinilo.ui.album.viewModel
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.uniandes.vinilo.common.dto.Album

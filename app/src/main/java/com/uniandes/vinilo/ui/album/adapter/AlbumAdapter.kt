@@ -1,4 +1,4 @@
-package com.uniandes.vinilo.ui.home.adapter
+package com.uniandes.vinilo.ui.album.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -10,7 +10,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.uniandes.vinilo.R
 import com.uniandes.vinilo.common.dto.Album
 import com.uniandes.vinilo.databinding.ItemAlbumBinding
-import com.uniandes.vinilo.ui.home.OnClickListener
+import com.uniandes.vinilo.ui.album.OnClickListener
 
 class AlbumAdapter(private var albumes: MutableList<Album>, private var listener: OnClickListener) :
     RecyclerView.Adapter<AlbumAdapter.ViewHolder>() {
@@ -30,6 +30,7 @@ class AlbumAdapter(private var albumes: MutableList<Album>, private var listener
             setListener(album)
 
             binding.tvName.text = album.name
+            binding.tvDescription.text = album.description
 
             Glide.with(mContext)
                 .load(album.cover)

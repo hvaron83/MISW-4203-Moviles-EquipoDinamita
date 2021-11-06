@@ -1,20 +1,20 @@
-package com.uniandes.vinilo.ui.home.viewModel
+package com.uniandes.vinilo.ui.album.viewModel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.uniandes.vinilo.common.dto.Album
 import com.uniandes.vinilo.common.utils.Constants
-import com.uniandes.vinilo.ui.home.model.HomeInteractor
+import com.uniandes.vinilo.ui.album.model.AlbumInteractor
 
-class HomeViewModel : ViewModel() {
+class AlbumViewModel : ViewModel() {
 
     private var albumList: MutableList<Album>
-    private var interactor: HomeInteractor
+    private var interactor: AlbumInteractor
 
     init {
         albumList = mutableListOf()
-        interactor = HomeInteractor()
+        interactor = AlbumInteractor()
     }
 
     private val showProgress: MutableLiveData<Boolean> = MutableLiveData()

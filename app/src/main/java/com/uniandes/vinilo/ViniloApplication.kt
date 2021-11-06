@@ -1,16 +1,16 @@
 package com.uniandes.vinilo
 
 import android.app.Application
-import com.uniandes.vinilo.common.api.AlbumAPI
+import com.uniandes.vinilo.common.api.NetworkServiceAdapter
 
 class ViniloApplication : Application() {
     companion object{
-        lateinit var albumApi: AlbumAPI
+        lateinit var networkServiceAdapter: NetworkServiceAdapter
     }
 
     override fun onCreate() {
         super.onCreate()
         //Volley
-        albumApi = AlbumAPI.getInstance(this)
+        networkServiceAdapter = NetworkServiceAdapter.getInstance(this)
     }
 }

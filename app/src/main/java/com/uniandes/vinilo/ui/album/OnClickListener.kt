@@ -1,4 +1,4 @@
-package com.uniandes.vinilo.ui.home
+package com.uniandes.vinilo.ui.album
 
 import com.uniandes.vinilo.common.dto.Album
 

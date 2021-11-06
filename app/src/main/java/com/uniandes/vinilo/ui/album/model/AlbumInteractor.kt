@@ -1,4 +1,4 @@
-package com.uniandes.vinilo.ui.home.model
+package com.uniandes.vinilo.ui.album.model
 
 import android.util.Log
 import com.android.volley.Request
@@ -11,9 +11,9 @@ import com.uniandes.vinilo.common.utils.Constants
 import org.json.JSONException
 
 
-class HomeInteractor {
+class AlbumInteractor {
 
-    private val TAG = "HomeInteractor"
+    private val TAG = "AlbumInteractor"
 
     fun getAlbums(callback: (MutableList<Album>) -> Unit){
         var url = Constants.VINILOS_URL + Constants.ALBUMS_PATH
@@ -46,7 +46,7 @@ class HomeInteractor {
             callback(albumList)
         })
 
-        ViniloApplication.albumApi.addToRequestQueue(jsonObjectRequest)
+        ViniloApplication.networkServiceAdapter.addToRequestQueue(jsonObjectRequest)
     }
 
 

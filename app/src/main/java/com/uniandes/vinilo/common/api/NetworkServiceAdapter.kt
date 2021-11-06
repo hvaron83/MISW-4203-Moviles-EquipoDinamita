@@ -5,14 +5,14 @@ import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.Volley
 
-class AlbumAPI constructor(context: Context) {
+class NetworkServiceAdapter constructor(context: Context) {
 
     companion object{
         @Volatile
-        private var INSTANCE: AlbumAPI? = null
+        private var INSTANCE: NetworkServiceAdapter? = null
 
         fun getInstance(context: Context) = INSTANCE?: synchronized(this){
-            INSTANCE ?: AlbumAPI(context).also { INSTANCE = it }
+            INSTANCE ?: NetworkServiceAdapter(context).also { INSTANCE = it }
         }
     }
 

@@ -1,4 +1,4 @@
-package com.uniandes.vinilo.ui.home
+package com.uniandes.vinilo.ui.album
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,28 +9,28 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.uniandes.vinilo.R
 import com.uniandes.vinilo.common.dto.Album
-import com.uniandes.vinilo.databinding.FragmentHomeBinding
-import com.uniandes.vinilo.ui.home.adapter.AlbumAdapter
-import com.uniandes.vinilo.ui.home.viewModel.DetailAlbumViewModel
-import com.uniandes.vinilo.ui.home.viewModel.HomeViewModel
+import com.uniandes.vinilo.databinding.FragmentAlbumBinding
+import com.uniandes.vinilo.ui.album.adapter.AlbumAdapter
+import com.uniandes.vinilo.ui.album.viewModel.DetailAlbumViewModel
+import com.uniandes.vinilo.ui.album.viewModel.AlbumViewModel
 
-class HomeFragment : Fragment(), OnClickListener {
+class AlbumFragment : Fragment(), OnClickListener {
 
-    private lateinit var mHomeViewModel: HomeViewModel
+    private lateinit var mAlbumViewModel: AlbumViewModel
     private lateinit var mDetailAlbumViewModel: DetailAlbumViewModel
 
-    private lateinit var mBinding: FragmentHomeBinding
+    private lateinit var mBinding: FragmentAlbumBinding
 
     private lateinit var mAdapter: AlbumAdapter
     private lateinit var mGridLayout: GridLayoutManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mHomeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
+        mAlbumViewModel = ViewModelProvider(this).get(AlbumViewModel::class.java)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        mBinding = FragmentHomeBinding.inflate(inflater, container, false)
+        mBinding = FragmentAlbumBinding.inflate(inflater, container, false)
         setupViewModel()
         setupRecylcerView()
         return mBinding.root
@@ -38,11 +38,11 @@ class HomeFragment : Fragment(), OnClickListener {
 
     private fun setupViewModel() {
 
-        mHomeViewModel.getAlbumes().observe(viewLifecycleOwner,  {albumes->
+        mAlbumViewModel.getAlbumes().observe(viewLifecycleOwner,  { albumes->
             mAdapter.setAlbumes(albumes)
 
         })
-        mHomeViewModel.isShowProgress().observe(viewLifecycleOwner, {isShowProgress ->
+        mAlbumViewModel.isShowProgress().observe(viewLifecycleOwner, { isShowProgress ->
             mBinding.progressBar.visibility = if (isShowProgress) View.VISIBLE else View.GONE
         })
 
@@ -61,7 +61,7 @@ class HomeFragment : Fragment(), OnClickListener {
         val fragmentManager = getActivity()?.supportFragmentManager
         val fragmentTransaction = fragmentManager?.beginTransaction()
 
-        fragmentTransaction?.add(R.id.fragmentoHome, fragment)
+        fragmentTransaction?.add(R.id.fragmentoAlbum, fragment)
         fragmentTransaction?.addToBackStack(null)
         fragmentTransaction?.commit()
     }

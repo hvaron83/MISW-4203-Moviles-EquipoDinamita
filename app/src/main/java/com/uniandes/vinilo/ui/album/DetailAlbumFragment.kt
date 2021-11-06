@@ -1,7 +1,6 @@
-package com.uniandes.vinilo.ui.home
+package com.uniandes.vinilo.ui.album
 
 import android.os.Bundle
-import android.text.Editable
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -11,7 +10,7 @@ import com.uniandes.vinilo.MainActivity
 import com.uniandes.vinilo.R
 import com.uniandes.vinilo.common.dto.Album
 import com.uniandes.vinilo.databinding.FragmentDetailAlbumBinding
-import com.uniandes.vinilo.ui.home.viewModel.DetailAlbumViewModel
+import com.uniandes.vinilo.ui.album.viewModel.DetailAlbumViewModel
 import java.text.SimpleDateFormat
 import java.util.*
 
