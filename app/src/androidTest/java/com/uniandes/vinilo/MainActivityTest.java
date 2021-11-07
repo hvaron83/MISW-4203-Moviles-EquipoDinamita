@@ -41,7 +41,7 @@ import org.junit.runner.RunWith;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class MainActivityTest5 {
+public class MainActivityTest {
 
     @Rule
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
@@ -58,58 +58,26 @@ public class MainActivityTest5 {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
         onView(withId(R.id.recyclerView)).perform(RecyclerViewActions.actionOnItemAtPosition(0,click()));
-
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        //onView(withId(R.id.tvName)).check(matches((withText("Buscando"))));
-
     }
 
     @Test
-    public void mainActivityTest6() {
-        /*Matcher<View> m = atPosition(0, withText("Poeta del pueblo"));
-        ViewInteraction itemView = onView(m);
-        itemView.perform();
-
-        onView(withId(R.id.recyclerView))
-                .check(matches(m));*/
-        return;
-    }
-
-
-    @Test
-    public void mainActivityTest5() {
-
+    public void testCountItems() {
         Matcher<View> m = allOf(withId(R.id.recyclerView),
-                        /*withContentDescription("Imagen del album"),
-                        withParent(withParent(withId(R.id.recyclerView))),*/
                 isDisplayed());
-
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
         int n = getRecyclerViewCount(m);
-
-        //Assert.assertEquals(6, Long.parseLong(n));
-        //Assert.assertTrue(new Long(n) > 0l);
-
         Assert.assertEquals(true, n > 0);
-
-        //ViewInteraction imageView = onView(m);
-
-        //Matcher<View> m = imageView;
-
-
         return;
-        //imageView.check(matches(isDisplayed()));
     }
 
     public static int getRecyclerViewCount(Matcher matcher) {
@@ -138,7 +106,6 @@ public class MainActivityTest5 {
                 description.appendText("has item at position " + position + ": ");
                 itemMatcher.describeTo(description);
             }
-
             @Override protected boolean matchesSafely(final RecyclerView view) {
                 RecyclerView.ViewHolder viewHolder = view.findViewHolderForAdapterPosition(position);
                 if (viewHolder == null) {
