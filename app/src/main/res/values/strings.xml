@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">Vinilos Mobile</string>
+    <string name="app_name">Vinilos</string>
+    <string name="title_home">Albumes</string>
+    <string name="title_artist">Artistas</string>
+    <string name="title_collector">Coleccionistas</string>
+    <string name="description_img_photo">Imagen del album</string>
+    <string name="detail_album_title">Detalle del álbum</string>
+    <string name="description_album_photo">Imagen del album</string>
 </resources>
