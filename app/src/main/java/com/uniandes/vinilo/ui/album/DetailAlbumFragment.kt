@@ -54,7 +54,7 @@ class DetailAlbumFragment : Fragment() {
 
     private fun setupActionBar() {
         mActivity = requireActivity() as? MainActivity
-        mActivity?.supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        //mActivity?.supportActionBar?.setDisplayHomeAsUpEnabled(true)
         mActivity?.supportActionBar?.title = getString(R.string.detail_album_title)
 
         setHasOptionsMenu(false)
@@ -72,11 +72,11 @@ class DetailAlbumFragment : Fragment() {
         with(mBinding){
             tvName.text = album.name
             tvGenre.text = album.genre + "-" + album.recordLabel
-            val dateFormat_yyyyMMddHH = SimpleDateFormat(
+            val dateFormat = SimpleDateFormat(
                 "yyyy-MM-dd", Locale.ENGLISH
             )
-            val date = dateFormat_yyyyMMddHH.parse(album.releaseDate)
-            tvDateRelease.text = dateFormat_yyyyMMddHH.format(date)
+            val date = dateFormat.parse(album.releaseDate)
+            tvDateRelease.text = dateFormat.format(date)
             tvDescription.text = album.description
             loadImage(album.cover)
         }

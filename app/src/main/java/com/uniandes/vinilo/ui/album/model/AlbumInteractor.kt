@@ -23,7 +23,7 @@ class AlbumInteractor {
             Log.i("response", response.toString())
 
             if (response.length() > 0){
-                val mutableListType = object : TypeToken<MutableList<Album>>(){}.type
+                //val mutableListType = object : TypeToken<MutableList<Album>>(){}.type
                 for (i in 0 until response.length()) {
                     try {
                         val jsonObject = Gson().fromJson<Album>(
