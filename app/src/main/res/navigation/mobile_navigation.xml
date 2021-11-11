@@ -12,10 +12,10 @@
         tools:layout="@layout/fragment_album" />
 
     <fragment
-        android:id="@+id/navigation_artist"
-        android:name="com.uniandes.vinilo.ui.artist.ArtistFragment"
-        android:label="@string/title_artist"
-        tools:layout="@layout/fragment_artist" />
+        android:id="@+id/navigation_artista"
+        android:name="com.uniandes.vinilo.ui.artista.ArtistaFragment"
+        android:label="@string/title_artista"
+        tools:layout="@layout/fragment_artista" />
 
     <fragment
         android:id="@+id/navigation_collector"
