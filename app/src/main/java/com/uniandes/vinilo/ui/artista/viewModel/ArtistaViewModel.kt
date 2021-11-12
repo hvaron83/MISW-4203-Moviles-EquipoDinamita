@@ -25,11 +25,7 @@ class ArtistaViewModel : ViewModel() {
         }
     }
 
-    fun getMusicians(): LiveData<MutableList<Artista>>{
-        return artistas
-    }
-
-    fun getBands(): LiveData<MutableList<Artista>>{
+    fun getArtistas(): LiveData<MutableList<Artista>>{
         return artistas
     }
 
@@ -40,11 +36,6 @@ class ArtistaViewModel : ViewModel() {
     private fun loadArtistas(){
         showProgress.value = Constants.SHOW
         interactor.getMusicians {
-            showProgress.value = Constants.HIDE
-            artistas.value = it
-            artistaList = it
-        }
-        interactor.getBands {
             showProgress.value = Constants.HIDE
             artistas.value = it
             artistaList = it

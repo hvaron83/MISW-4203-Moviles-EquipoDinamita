@@ -42,11 +42,7 @@ class ArtistaFragment : Fragment(), OnClickListener {
 
     private fun setupViewModel() {
 
-        mArtistaViewModel.getMusicians().observe(viewLifecycleOwner,  { artistas->
-            mAdapter.setArtistas(artistas)
-        })
-
-        mArtistaViewModel.getBands().observe(viewLifecycleOwner,  { artistas->
+        mArtistaViewModel.getArtistas().observe(viewLifecycleOwner,  { artistas ->
             mAdapter.setArtistas(artistas)
         })
 

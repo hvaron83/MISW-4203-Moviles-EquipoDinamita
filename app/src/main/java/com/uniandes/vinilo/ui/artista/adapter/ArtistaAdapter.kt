@@ -11,6 +11,9 @@ import com.uniandes.vinilo.R
 import com.uniandes.vinilo.common.dto.Artista
 import com.uniandes.vinilo.databinding.ItemArtistaBinding
 import com.uniandes.vinilo.ui.artista.ArtistaFragment
+import kotlinx.coroutines.flow.merge
+import java.text.SimpleDateFormat
+import java.util.*
 
 class ArtistaAdapter(private var artistas: MutableList<Artista>, private var listener: ArtistaFragment) :
     RecyclerView.Adapter<ArtistaAdapter.ViewHolder>() {
@@ -30,7 +33,12 @@ class ArtistaAdapter(private var artistas: MutableList<Artista>, private var lis
             setListener(artista)
 
             binding.tvName.text = artista.name
-            binding.tvCreateDate.text = artista.creationDate
+
+            val dateFormat = SimpleDateFormat(
+                "yyyy-MM-dd", Locale.ENGLISH
+            )
+            val date = dateFormat.parse(artista.creationDate)
+            binding.tvCreateDate.text = dateFormat.format(date)
 
             Glide.with(mContext)
                 .load(artista.image)
@@ -45,6 +53,10 @@ class ArtistaAdapter(private var artistas: MutableList<Artista>, private var lis
     fun setArtistas(artistas: MutableList<Artista>) {
         this.artistas = artistas
         notifyDataSetChanged()
+    }
+
+    fun <T> rmerge(first: List<T>, second: List<T>): List<T> {
+        return first.plus(second)
     }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view){
