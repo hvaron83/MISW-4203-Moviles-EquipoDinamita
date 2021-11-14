@@ -6,23 +6,14 @@ import com.uniandes.vinilo.models.Album
 import com.uniandes.vinilo.network.NetworkServiceAdapter
 
 class AlbumRepository (val application: Application){
-    fun refreshData(callback: (List<Album>)->Unit, onError: (VolleyError)->Unit) {
+    suspend fun refreshData(): List<Album>{
         //Determinar la fuente de datos que se va a utilizar. Si es necesario consultar la red, ejecutar el siguiente código
-        NetworkServiceAdapter.getInstance(application).getAlbums({
-            //Guardar los albumes de la variable it en un almacén de datos local para uso futuro
-            callback(it)
-        },
-            onError
-        )
+        return NetworkServiceAdapter.getInstance(application).getAlbums()
     }
 
-    fun refreshDataDetail(albumId: Int,callback: (Album)->Unit, onError: (VolleyError)->Unit) {
+    suspend fun refreshDataDetail(albumId: Int): Album{
         //Determinar la fuente de datos que se va a utilizar. Si es necesario consultar la red, ejecutar el siguiente código
-        NetworkServiceAdapter.getInstance(application).getAlbum(albumId, {
-            //Guardar los albumes de la variable it en un almacén de datos local para uso futuro
-            callback(it)
-        },
-            onError
-        )
+        return NetworkServiceAdapter.getInstance(application).getAlbum(albumId)
     }
+
 }
