@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="color_divider">#1F000000</color>
     <color name="color_white_t">#CCFFFFFF</color>
+    <color name="stroke_color">#95EDED</color>
 </resources>
