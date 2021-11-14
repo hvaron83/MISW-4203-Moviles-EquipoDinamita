@@ -65,6 +65,8 @@ dependencies {
     //Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2")
 
+    implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.2"
+
     //Espresso
     implementation 'androidx.test.espresso:espresso-contrib:3.4.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'

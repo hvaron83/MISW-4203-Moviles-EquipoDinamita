@@ -18,7 +18,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:strokeColor="@color/stroke_color"
+            android:layout_marginTop="@dimen/common_margin_min"
+            app:strokeColor="@color/color_divider"
             app:strokeWidth="1dp">
 
             <LinearLayout
