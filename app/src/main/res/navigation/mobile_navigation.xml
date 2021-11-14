@@ -7,19 +7,29 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.uniandes.vinilo.ui.album.AlbumFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_album" />
+        android:name="com.uniandes.vinilo.ui.AlbumFragment"
+        android:label="@string/title_albums"
+        tools:layout="@layout/album_fragment" >
+        <action
+            android:id="@+id/action_albumFragment_to_commentFragment"
+            app:destination="@id/commentFragment" />
+    </fragment>
 
-    <fragment
-        android:id="@+id/navigation_artist"
-        android:name="com.uniandes.vinilo.ui.artist.ArtistFragment"
-        android:label="@string/title_artist"
-        tools:layout="@layout/fragment_artist" />
 
     <fragment
         android:id="@+id/navigation_collector"
-        android:name="com.uniandes.vinilo.ui.collector.CollectorFragment"
+        android:name="com.uniandes.vinilo.ui.CollectorFragment"
         android:label="@string/title_collector"
-        tools:layout="@layout/fragment_collector" />
+        tools:layout="@layout/collector_fragment" />
+
+    <fragment
+        android:id="@+id/commentFragment"
+        android:name="com.uniandes.vinilo.ui.CommentFragment"
+        android:label="@string/title_comments"
+        tools:layout="@layout/comment_fragment" >
+        <argument
+            android:name="albumId"
+            app:argType="integer" />
+    </fragment>
+
 </navigation>

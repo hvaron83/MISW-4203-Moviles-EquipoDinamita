@@ -6,4 +6,10 @@
     <string name="description_img_photo">Imagen del album</string>
     <string name="detail_album_title">Detalle del álbum</string>
     <string name="description_album_photo">Imagen del album</string>
+    <string name="title_albums">Albumes</string>
+    <string name="title_collectors">Coleccionistas</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="txt_no_comments">No hay comentarios</string>
+    <string name="title_comments">Comentarios</string>
 </resources>
