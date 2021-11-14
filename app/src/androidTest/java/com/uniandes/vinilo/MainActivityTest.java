@@ -42,7 +42,7 @@ public class MainActivityTest {
 
     @Test
     public void testListaVisible() {
-        onView(withId(R.id.recyclerView)).check(matches(isDisplayed()));
+        onView(withId(R.id.albumsRv)).check(matches(isDisplayed()));
     }
 
     @Test
@@ -52,7 +52,7 @@ public class MainActivityTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        onView(withId(R.id.recyclerView)).perform(RecyclerViewActions.actionOnItemAtPosition(0,click()));
+        onView(withId(R.id.albumsRv)).perform(RecyclerViewActions.actionOnItemAtPosition(0,click()));
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
@@ -62,7 +62,7 @@ public class MainActivityTest {
 
     @Test
     public void testCountItems() {
-        Matcher<View> m = allOf(withId(R.id.recyclerView),
+        Matcher<View> m = allOf(withId(R.id.albumsRv),
                 isDisplayed());
         try {
             Thread.sleep(2000);
