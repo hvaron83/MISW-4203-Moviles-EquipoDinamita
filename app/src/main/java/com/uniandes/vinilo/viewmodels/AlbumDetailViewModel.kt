@@ -5,14 +5,14 @@ import androidx.lifecycle.*
 import com.uniandes.vinilo.models.Album
 import com.uniandes.vinilo.repositories.AlbumRepository
 
-class AlbumViewModel(application: Application) :  AndroidViewModel(application) {
+class AlbumDetailViewModel(application: Application, albumId: Int) :  AndroidViewModel(application) {
 
     private val albumsRepository = AlbumRepository(application)
 
-    private val _albums = MutableLiveData<List<Album>>()
+    private val _album = MutableLiveData<Album>()
 
-    val albums: LiveData<List<Album>>
-        get() = _albums
+    val album: LiveData<Album>
+        get() = _album
 
     private var _eventNetworkError = MutableLiveData<Boolean>(false)
 
@@ -24,13 +24,15 @@ class AlbumViewModel(application: Application) :  AndroidViewModel(application) 
     val isNetworkErrorShown: LiveData<Boolean>
         get() = _isNetworkErrorShown
 
+    val id:Int = albumId
+
     init {
         refreshDataFromNetwork()
     }
 
     private fun refreshDataFromNetwork() {
-        albumsRepository.refreshData({
-            _albums.postValue(it)
+        albumsRepository.refreshDataDetail(id,{
+            _album.postValue(it)
             _eventNetworkError.value = false
             _isNetworkErrorShown.value = false
         },{
@@ -42,11 +44,11 @@ class AlbumViewModel(application: Application) :  AndroidViewModel(application) 
         _isNetworkErrorShown.value = true
     }
 
-    class Factory(val app: Application) : ViewModelProvider.Factory {
+    class Factory(val app: Application, val albumId: Int) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            if (modelClass.isAssignableFrom(AlbumViewModel::class.java)) {
+            if (modelClass.isAssignableFrom(AlbumDetailViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")
-                return AlbumViewModel(app) as T
+                return AlbumDetailViewModel(app, albumId) as T
             }
             throw IllegalArgumentException("Unable to construct viewmodel")
         }

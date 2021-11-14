@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.uniandes.vinilo.R
 import com.uniandes.vinilo.databinding.AlbumItemBinding
@@ -37,7 +38,7 @@ class AlbumsAdapter : RecyclerView.Adapter<AlbumsAdapter.AlbumViewHolder>(){
         }
         holder.bind(albums[position])
         holder.viewDataBinding.root.setOnClickListener {
-            val action = AlbumFragmentDirections.actionAlbumFragmentToCommentFragment(albums[position].albumId)
+            val action = AlbumFragmentDirections.actionAlbumFragmentToAlbumDetailFragment(albums[position].albumId)
             // Navigate using that action
             holder.viewDataBinding.root.findNavController().navigate(action)
         }
@@ -60,7 +61,7 @@ class AlbumsAdapter : RecyclerView.Adapter<AlbumsAdapter.AlbumViewHolder>(){
                 .apply(
                     RequestOptions()
                         .placeholder(R.drawable.ic_loading_animation)
-
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
                         .error(R.drawable.ic_broken_image))
                 .into(viewDataBinding.albumCover)
         }
