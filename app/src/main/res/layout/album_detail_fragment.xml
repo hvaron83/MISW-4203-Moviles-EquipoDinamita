@@ -73,6 +73,13 @@
                     android:textColor="?android:attr/textColorSecondary"
                     />
 
+                <Button
+                    android:id="@+id/comentariosButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ver comentarios"
+                    />
+
 
             </LinearLayout>
 

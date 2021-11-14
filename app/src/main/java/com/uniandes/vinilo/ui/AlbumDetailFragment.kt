@@ -10,6 +10,8 @@ import android.widget.Toast
 import androidx.core.net.toUri
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -64,6 +66,13 @@ class AlbumDetailFragment : Fragment() {
         viewModel.eventNetworkError.observe(viewLifecycleOwner, Observer<Boolean> { isNetworkError ->
             if (isNetworkError) onNetworkError()
         })
+        binding.comentariosButton.setOnClickListener{
+            val action = AlbumDetailFragmentDirections.actionAlbumFragmentToCommentFragment(args.albumId)
+            // Navigate using that action
+            findNavController().navigate(action)
+        }
+
+
     }
     override fun onDestroyView() {
         super.onDestroyView()
