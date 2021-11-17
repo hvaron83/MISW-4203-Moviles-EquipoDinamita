@@ -1,4 +1,4 @@
-package com.uniandes.vinilo
+package com.uniandes.vinilo.ui
 
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -7,6 +7,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.uniandes.vinilo.R
 import com.uniandes.vinilo.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -26,7 +27,7 @@ class MainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_home, R.id.navigation_artista, R.id.navigation_collector
+                R.id.navigation_home,  R.id.navigation_collector
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)

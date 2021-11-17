@@ -9,4 +9,10 @@
     <string name="description_img_photo_artista">Imagen del artista</string>
     <string name="detail_artista_title">Detalle del artista</string>
     <string name="description_artista_photo">Imagen del artista</string>
+    <string name="title_albums">Albumes</string>
+    <string name="title_collectors">Coleccionistas</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="txt_no_comments">No hay comentarios</string>
+    <string name="title_comments">Comentarios</string>
 </resources>

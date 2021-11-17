@@ -4,6 +4,8 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="item_card_height">200dp</dimen>
     <dimen name="common_padding_min">8dp</dimen>
+    <dimen name="common_padding_min_3">3dp</dimen>
+    <dimen name="common_padding_min_6">6dp</dimen>
     <dimen name="common_padding_default">16dp</dimen>
     <dimen name="common_padding_middle">24dp</dimen>
     <dimen name="common_padding_none">0dp</dimen>
@@ -11,4 +13,5 @@
     <dimen name="dimen_photo_height">194dp</dimen>
     <dimen name="card_img_size">50dp</dimen>
     <dimen name="card_height">56dp</dimen>
+    <dimen name="common_margin_min">5dp</dimen>
 </resources>

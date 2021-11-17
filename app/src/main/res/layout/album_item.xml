@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable name="album" type="com.uniandes.vinilo.models.Album"/>
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/common_margin_min"
+        app:strokeColor="@color/color_divider"
+        app:strokeWidth="1dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:id="@+id/album_cover"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/common_padding_min_6">
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="@dimen/common_padding_min"
+                    android:paddingTop="@dimen/common_padding_min_3"
+                    android:paddingEnd="@dimen/common_padding_min"
+                    android:paddingBottom="@dimen/common_padding_min_3"
+                    tools:text="nombre album"
+                    android:text="@{album.name}"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="@dimen/common_padding_min"
+                    android:paddingTop="@dimen/common_padding_min_3"
+                    android:paddingEnd="@dimen/common_padding_min"
+                    android:paddingBottom="@dimen/common_padding_min_3"
+                    android:maxLines="4"
+                    android:ellipsize="end"
+                    tools:text="descripcion album"
+                    android:text="@{album.description}" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>
