@@ -5,7 +5,7 @@
     <string name="title_collector">Coleccionistas</string>
     <string name="description_img_photo_album">Imagen del album</string>
     <string name="detail_album_title">Detalle del álbum</string>
-    <string name="description_album_photo">Imagen del album</string>
+    <string name="description_img_photo">Imagen del album</string>
     <string name="description_img_photo_artista">Imagen del artista</string>
     <string name="detail_artista_title">Detalle del artista</string>
     <string name="description_artista_photo">Imagen del artista</string>

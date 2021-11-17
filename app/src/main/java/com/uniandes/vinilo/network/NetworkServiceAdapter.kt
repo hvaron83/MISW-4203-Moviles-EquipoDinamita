@@ -5,15 +5,16 @@ import android.util.Log
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
-import com.android.volley.VolleyError
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.uniandes.vinilo.models.Album
+import com.uniandes.vinilo.models.Artista
 import com.uniandes.vinilo.models.Collector
 import com.uniandes.vinilo.models.Comment
 import org.json.JSONArray
 import org.json.JSONObject
+import java.text.SimpleDateFormat
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
@@ -93,6 +94,94 @@ class NetworkServiceAdapter constructor(context: Context) {
                 cont.resumeWithException(it)
             }))
     }
+    suspend fun getBands() = suspendCoroutine<List<Artista>>{ cont->
+        requestQueue.add(getRequest("bands",
+            Response.Listener<String> { response ->
+                val resp = JSONArray(response)
+                val list = mutableListOf<Artista>()
+                for (i in 0 until resp.length()) {//inicializado como variable de retorno
+                    val item = resp.getJSONObject(i)
+                    val artista = Artista(
+                        artistaId = item.getInt("id"),
+                        name = item.getString("name"),
+                        date = item.getString("creationDate"),
+                        description = item.getString("description"),
+                        image = item.getString("image")
+                    )
+                    list.add(i, artista) //se agrega a medida que se procesa la respuesta
+                }
+                cont.resume(list)
+            },
+            Response.ErrorListener {
+                cont.resumeWithException(it)
+            }))
+    }
+    suspend fun getBand(artistaId:Int) = suspendCoroutine<Artista>{ cont->
+        requestQueue.add(getRequest("bands/$artistaId",
+            Response.Listener<String> { response ->
+                val resp = JSONObject(response)
+                val artista = Artista(
+                    artistaId = resp.getInt("id"),
+                    name = resp.getString("name"),
+                    date = resp.getString("creationDate"),
+                    description = resp.getString("description"),
+                    image = resp.getString("image")
+                )
+
+                cont.resume(artista)
+            },
+            Response.ErrorListener {
+                cont.resumeWithException(it)
+            }))
+    }
+    suspend fun getMusicians() = suspendCoroutine<List<Artista>>{ cont->
+        requestQueue.add(getRequest("musicians",
+            Response.Listener<String> { response ->
+                val resp = JSONArray(response)
+                val list = mutableListOf<Artista>()
+                for (i in 0 until resp.length()) {//inicializado como variable de retorno
+                    val item = resp.getJSONObject(i)
+                    val artista = Artista(
+                        artistaId = item.getInt("id"),
+                        name = item.getString("name"),
+                        date = item.getString("birthDate"),
+                        description = item.getString("description"),
+                        image = item.getString("image")
+                    )
+                    list.add(i, artista) //se agrega a medida que se procesa la respuesta
+                }
+                cont.resume(list)
+            },
+            Response.ErrorListener {
+                cont.resumeWithException(it)
+            }))
+    }
+    suspend fun getMusician(artistaId:Int) = suspendCoroutine<Artista>{ cont->
+        requestQueue.add(getRequest("musicians/$artistaId",
+            Response.Listener<String> { response ->
+                val resp = JSONObject(response)
+                val artista = Artista(
+                    artistaId = resp.getInt("id"),
+                    name = resp.getString("name"),
+                    date = resp.getString("birthDate"),
+                    description = resp.getString("description"),
+                    image = resp.getString("image")
+                )
+
+                cont.resume(artista)
+            },
+            Response.ErrorListener {
+                cont.resumeWithException(it)
+            }))
+    }
+
+    fun formatDate(odate : String): String {
+        val pattern = "yyyy-MM-dd"
+        val simpleDateFormat = SimpleDateFormat(pattern)
+        val date: String = simpleDateFormat.format(odate)
+        return date
+    }
+
 
     private fun getRequest(path:String, responseListener: Response.Listener<String>, errorListener: Response.ErrorListener): StringRequest {
         return StringRequest(Request.Method.GET, BASE_URL+path, responseListener,errorListener)
