@@ -37,8 +37,15 @@ class ArtistaAdapter(private var artistas: MutableList<Artista>, private var lis
             val dateFormat = SimpleDateFormat(
                 "yyyy-MM-dd", Locale.ENGLISH
             )
-            val date = dateFormat.parse(artista.creationDate)
-            binding.tvCreateDate.text = dateFormat.format(date)
+            if (artista.creationDate != null ) {
+                var date = dateFormat.parse(artista.creationDate)
+                binding.tvCreateDate.text = dateFormat.format(date)
+            }
+            else {
+                var date = dateFormat.parse(artista.birthDate)
+                binding.tvCreateDate.text = dateFormat.format(date)
+            }
+
 
             Glide.with(mContext)
                 .load(artista.image)

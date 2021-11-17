@@ -35,7 +35,7 @@ class ArtistaViewModel : ViewModel() {
 
     private fun loadArtistas(){
         showProgress.value = Constants.SHOW
-        interactor.getMusicians {
+        interactor.getArtistas{
             showProgress.value = Constants.HIDE
             artistas.value = it
             artistaList = it

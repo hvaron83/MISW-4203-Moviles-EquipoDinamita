@@ -48,7 +48,4 @@ class AlbumInteractor {
 
         ViniloApplication.networkServiceAdapter.addToRequestQueue(jsonObjectRequest)
     }
-
-
-
 }
