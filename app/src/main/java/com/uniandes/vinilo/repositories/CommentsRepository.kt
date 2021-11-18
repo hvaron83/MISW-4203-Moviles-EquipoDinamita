@@ -48,7 +48,7 @@ class CommentsRepository (val application: Application){
     private fun addComments(albumId:Int, comments: List<Comment>){
         val prefs = CacheManager.getPrefs(application.baseContext, CacheManager.ALBUMS_SPREFS)
         if(!prefs.contains(albumId.toString())){
-            var store = format.encodeToString(comments)
+            val store = format.encodeToString(comments)
             with(prefs.edit(),{
                 putString(albumId.toString(), store)
                 apply()

@@ -5,17 +5,14 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-
 import android.widget.Toast
-import androidx.lifecycle.Observer
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.uniandes.vinilo.R
 import com.uniandes.vinilo.databinding.CommentFragmentBinding
-import com.uniandes.vinilo.models.Comment
 import com.uniandes.vinilo.ui.adapters.CommentsAdapter
 import com.uniandes.vinilo.viewmodels.CommentViewModel
 
@@ -32,7 +29,7 @@ class CommentFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = CommentFragmentBinding.inflate(inflater, container, false)
         val view = binding.root
         viewModelAdapter = CommentsAdapter()
@@ -53,7 +50,7 @@ class CommentFragment : Fragment() {
         activity.actionBar?.title = getString(R.string.title_comments)
         val args: CommentFragmentArgs  by navArgs()
         Log.d("Args", args.albumId.toString())
-        viewModel = ViewModelProvider(this, CommentViewModel.Factory(activity.application, args.albumId)).get(CommentViewModel::class.java)
+        viewModel = ViewModelProvider(this, CommentViewModel.Factory(activity.application, args.albumId))[CommentViewModel::class.java]
         viewModel.comments.observe(viewLifecycleOwner, {
             it.apply {
                 viewModelAdapter!!.comments = this

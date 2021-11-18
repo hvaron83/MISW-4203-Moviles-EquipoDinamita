@@ -28,7 +28,7 @@ class AlbumDetailFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = AlbumDetailFragmentBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -45,8 +45,7 @@ class AlbumDetailFragment : Fragment() {
         activity.actionBar?.title = getString(R.string.title_comments)
         val args: CommentFragmentArgs  by navArgs()
         Log.d("Args", args.albumId.toString())
-        viewModel = ViewModelProvider(this, AlbumDetailViewModel.Factory(activity.application, args.albumId)).get(
-            AlbumDetailViewModel::class.java)
+        viewModel = ViewModelProvider(this, AlbumDetailViewModel.Factory(activity.application, args.albumId))[AlbumDetailViewModel::class.java]
         viewModel.album.observe(viewLifecycleOwner, {
             it.apply {
                binding.album = this

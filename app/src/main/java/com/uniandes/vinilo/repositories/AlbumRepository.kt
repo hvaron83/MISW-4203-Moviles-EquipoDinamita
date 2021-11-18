@@ -52,7 +52,7 @@ class AlbumRepository(val application: Application) {
     private fun addAlbums(albums: List<Album>) {
         val prefs = CacheManager.getPrefs(application.baseContext, CacheManager.ALBUMS_SPREFS)
         if(!prefs.contains("albums")) {
-            var store = format.encodeToString(albums)
+            val store = format.encodeToString(albums)
             with(prefs.edit(), {
                 putString("albums", store)
                 apply()

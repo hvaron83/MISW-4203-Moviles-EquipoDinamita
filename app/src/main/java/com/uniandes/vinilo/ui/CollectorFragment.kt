@@ -24,7 +24,7 @@ class CollectorFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = CollectorFragmentBinding.inflate(inflater, container, false)
         val view = binding.root
         viewModelAdapter = CollectorsAdapter()
@@ -43,7 +43,7 @@ class CollectorFragment : Fragment() {
             "You can only access the viewModel after onActivityCreated()"
         }
         activity.actionBar?.title = getString(R.string.title_collectors)
-        viewModel = ViewModelProvider(this, CollectorViewModel.Factory(activity.application)).get(CollectorViewModel::class.java)
+        viewModel = ViewModelProvider(this, CollectorViewModel.Factory(activity.application))[CollectorViewModel::class.java]
         viewModel.collectors.observe(viewLifecycleOwner, {
             it.apply {
                 viewModelAdapter!!.collectors = this

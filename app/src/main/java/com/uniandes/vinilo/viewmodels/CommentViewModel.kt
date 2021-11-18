@@ -37,7 +37,7 @@ class CommentViewModel(application: Application, albumId: Int) :  AndroidViewMod
         try {
             viewModelScope.launch(Dispatchers.Default){
                 withContext(Dispatchers.IO){
-                    var data = commentsRepository.refreshData(id)
+                    val data = commentsRepository.refreshData(id)
                     _comments.postValue(data)
                 }
                 _eventNetworkError.postValue(false)

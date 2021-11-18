@@ -47,7 +47,7 @@ class CollectorsRepository (val application: Application){
     private fun addCollectors(collectors: List<Collector>) {
         val prefs = CacheManager.getPrefs(application.baseContext, CacheManager.ALBUMS_SPREFS)
         if(!prefs.contains("collectors")) {
-            var store = format.encodeToString(collectors)
+            val store = format.encodeToString(collectors)
             with(prefs.edit(), {
                 putString("collectors", store)
                 apply()
