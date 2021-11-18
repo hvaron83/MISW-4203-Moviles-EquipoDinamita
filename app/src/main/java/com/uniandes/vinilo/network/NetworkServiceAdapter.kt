@@ -94,12 +94,14 @@ class NetworkServiceAdapter constructor(context: Context) {
                 cont.resumeWithException(it)
             }))
     }
+
+
     suspend fun getBands() = suspendCoroutine<List<Artista>>{ cont->
         requestQueue.add(getRequest("bands",
             { response ->
                 val resp = JSONArray(response)
                 val list = mutableListOf<Artista>()
-                for (i in 0 until resp.length()) {//inicializado como variable de retorno
+                for (i in 0 until resp.length()) {
                     val item = resp.getJSONObject(i)
                     list.add(i, Artista(
                         artistaId = item.getInt("id"),
