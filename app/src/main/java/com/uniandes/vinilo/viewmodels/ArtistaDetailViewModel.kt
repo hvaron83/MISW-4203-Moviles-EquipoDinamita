@@ -37,7 +37,8 @@ class ArtistaDetailViewModel(application: Application, artistaId: Int) :  Androi
         try {
             viewModelScope.launch(Dispatchers.Default){
                 withContext(Dispatchers.IO){
-                    val data = artistasRepository.refreshDataDetail(id)
+                    // Todo: cambiar para que tambien consuma musicos refreshDataDetailMusician(id)
+                    val data = artistasRepository.refreshDataDetailBand(id)
                     _artista.postValue(data)
                 }
                 _eventNetworkError.postValue(false)

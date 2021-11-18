@@ -101,14 +101,13 @@ class NetworkServiceAdapter constructor(context: Context) {
                 val list = mutableListOf<Artista>()
                 for (i in 0 until resp.length()) {//inicializado como variable de retorno
                     val item = resp.getJSONObject(i)
-                    val artista = Artista(
+                    list.add(i, Artista(
                         artistaId = item.getInt("id"),
                         name = item.getString("name"),
                         date = item.getString("creationDate"),
                         description = item.getString("description"),
                         image = item.getString("image")
-                    )
-                    list.add(i, artista) //se agrega a medida que se procesa la respuesta
+                    )) //se agrega a medida que se procesa la respuesta
                 }
                 cont.resume(list)
             },
@@ -120,15 +119,13 @@ class NetworkServiceAdapter constructor(context: Context) {
         requestQueue.add(getRequest("bands/$artistaId",
             { response ->
                 val resp = JSONObject(response)
-                val artista = Artista(
+                cont.resume(Artista(
                     artistaId = resp.getInt("id"),
                     name = resp.getString("name"),
                     date = resp.getString("creationDate"),
                     description = resp.getString("description"),
                     image = resp.getString("image")
-                )
-
-                cont.resume(artista)
+                ))
             },
             {
                 cont.resumeWithException(it)
@@ -141,14 +138,13 @@ class NetworkServiceAdapter constructor(context: Context) {
                 val list = mutableListOf<Artista>()
                 for (i in 0 until resp.length()) {//inicializado como variable de retorno
                     val item = resp.getJSONObject(i)
-                    val artista = Artista(
+                    list.add(i, Artista(
                         artistaId = item.getInt("id"),
                         name = item.getString("name"),
                         date = item.getString("birthDate"),
                         description = item.getString("description"),
                         image = item.getString("image")
-                    )
-                    list.add(i, artista) //se agrega a medida que se procesa la respuesta
+                    )) //se agrega a medida que se procesa la respuesta
                 }
                 cont.resume(list)
             },
@@ -160,15 +156,13 @@ class NetworkServiceAdapter constructor(context: Context) {
         requestQueue.add(getRequest("musicians/$artistaId",
             { response ->
                 val resp = JSONObject(response)
-                val artista = Artista(
+                cont.resume(Artista(
                     artistaId = resp.getInt("id"),
                     name = resp.getString("name"),
                     date = resp.getString("birthDate"),
                     description = resp.getString("description"),
                     image = resp.getString("image")
-                )
-
-                cont.resume(artista)
+                ))
             },
             {
                 cont.resumeWithException(it)

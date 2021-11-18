@@ -18,8 +18,8 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="120dp"
-                android:layout_height="120dp"
+                android:layout_width="150dp"
+                android:layout_height="180dp"
                 android:id="@+id/artista_imagen"
                 android:contentDescription="@string/description_img_photo_artista" />
 
@@ -29,31 +29,16 @@
                 android:orientation="vertical"
                 android:padding="@dimen/common_padding_min_6">
 
-                <TextView
-                    android:id="@+id/textView6"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingStart="@dimen/common_padding_min"
-                    android:paddingTop="@dimen/common_padding_min_3"
-                    android:paddingEnd="@dimen/common_padding_min"
-                    android:paddingBottom="@dimen/common_padding_min_3"
-                    tools:text="nombre artista"
-                    android:text="@{artista.name}"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/textView5"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingStart="@dimen/common_padding_min"
-                    android:paddingTop="@dimen/common_padding_min_3"
-                    android:paddingEnd="@dimen/common_padding_min"
-                    android:paddingBottom="@dimen/common_padding_min_3"
-                    android:maxLines="4"
-                    android:ellipsize="end"
-                    android:text="@{artista.date}" />
-
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:text="@{artista.name}"
+                android:textStyle="bold"
+                tools:text="nombre artista" />
         </LinearLayout>
 
     </com.google.android.material.card.MaterialCardView>
