@@ -30,11 +30,6 @@ class CollectorsRepository (val application: Application){
         } else collectors
     }
 
-    /*suspend fun refreshData(): List<Collector>{
-        //Determinar la fuente de datos que se va a utilizar. Si es necesario consultar la red, ejecutar el siguiente código
-        return NetworkServiceAdapter.getInstance(application).getCollectors()
-    }*/
-
     private suspend fun getCollectors(): List<Collector> {
         val prefs = CacheManager.getPrefs(application.baseContext, CacheManager.ALBUMS_SPREFS)
         if(prefs.contains("collectors")){
