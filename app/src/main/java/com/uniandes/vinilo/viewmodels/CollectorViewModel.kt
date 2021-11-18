@@ -1,7 +1,6 @@
 package com.uniandes.vinilo.viewmodels
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.*
 import com.uniandes.vinilo.models.Collector
 import com.uniandes.vinilo.repositories.CollectorsRepository
@@ -18,12 +17,12 @@ class CollectorViewModel(application: Application) :  AndroidViewModel(applicati
     val collectors: LiveData<List<Collector>>
         get() = _collectors
 
-    private var _eventNetworkError = MutableLiveData<Boolean>(false)
+    private var _eventNetworkError = MutableLiveData(false)
 
     val eventNetworkError: LiveData<Boolean>
         get() = _eventNetworkError
 
-    private var _isNetworkErrorShown = MutableLiveData<Boolean>(false)
+    private var _isNetworkErrorShown = MutableLiveData(false)
 
     val isNetworkErrorShown: LiveData<Boolean>
         get() = _isNetworkErrorShown
@@ -36,7 +35,7 @@ class CollectorViewModel(application: Application) :  AndroidViewModel(applicati
         try {
             viewModelScope.launch(Dispatchers.Default){
                 withContext(Dispatchers.IO){
-                    var data = collectorsRepository.refreshData()
+                    val data = collectorsRepository.refreshData()
                     _collectors.postValue(data)
                 }
                 _eventNetworkError.postValue(false)

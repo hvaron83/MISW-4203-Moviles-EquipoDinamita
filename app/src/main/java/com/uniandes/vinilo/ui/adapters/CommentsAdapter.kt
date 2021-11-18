@@ -1,5 +1,6 @@
 package com.uniandes.vinilo.ui.adapters
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
@@ -12,6 +13,7 @@ import com.uniandes.vinilo.models.Comment
 class CommentsAdapter : RecyclerView.Adapter<CommentsAdapter.CommentViewHolder>(){
 
     var comments :List<Comment> = emptyList()
+        @SuppressLint("NotifyDataSetChanged")
         set(value) {
             field = value
             notifyDataSetChanged()

@@ -30,7 +30,7 @@ class CollectorsRepository (val application: Application){
         } else collectors
     }
 
-    private suspend fun getCollectors(): List<Collector> {
+    private fun getCollectors(): List<Collector> {
         val prefs = CacheManager.getPrefs(application.baseContext, CacheManager.ALBUMS_SPREFS)
         if(prefs.contains("collectors")){
             val storedVal = prefs.getString("collectors", "")
@@ -38,16 +38,16 @@ class CollectorsRepository (val application: Application){
                 val resp = JSONArray(storedVal)
                 Log.d("deserialize", resp.toString())
                 Log.d("Cache decision collecto", "return ${resp.length()} elements from cache")
-                return format.decodeFromString<List<Collector>>(storedVal)
+                return format.decodeFromString(storedVal)
             }
         }
-        return listOf<Collector>()
+        return listOf()
     }
 
-    private suspend fun addCollectors(collectors: List<Collector>) {
+    private fun addCollectors(collectors: List<Collector>) {
         val prefs = CacheManager.getPrefs(application.baseContext, CacheManager.ALBUMS_SPREFS)
         if(!prefs.contains("collectors")) {
-            var store = format.encodeToString(collectors)
+            val store = format.encodeToString(collectors)
             with(prefs.edit(), {
                 putString("collectors", store)
                 apply()

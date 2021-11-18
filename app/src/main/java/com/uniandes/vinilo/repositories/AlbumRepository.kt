@@ -35,7 +35,7 @@ class AlbumRepository(val application: Application) {
         return NetworkServiceAdapter.getInstance(application).getAlbum(albumId)
     }
 
-    private suspend fun getAlbums(): List<Album> {
+    private fun getAlbums(): List<Album> {
         val prefs = CacheManager.getPrefs(application.baseContext, CacheManager.ALBUMS_SPREFS)
         if(prefs.contains("albums")){
             val storedVal = prefs.getString("albums", "")
@@ -43,16 +43,16 @@ class AlbumRepository(val application: Application) {
                 val resp = JSONArray(storedVal)
                 Log.d("deserialize", resp.toString())
                 Log.d("Cache decision albums", "return ${resp.length()} elements from cache")
-                return format.decodeFromString<List<Album>>(storedVal)
+                return format.decodeFromString(storedVal)
             }
         }
-        return listOf<Album>()
+        return listOf()
     }
 
-    private suspend fun addAlbums(albums: List<Album>) {
+    private fun addAlbums(albums: List<Album>) {
         val prefs = CacheManager.getPrefs(application.baseContext, CacheManager.ALBUMS_SPREFS)
         if(!prefs.contains("albums")) {
-            var store = format.encodeToString(albums)
+            val store = format.encodeToString(albums)
             with(prefs.edit(), {
                 putString("albums", store)
                 apply()
