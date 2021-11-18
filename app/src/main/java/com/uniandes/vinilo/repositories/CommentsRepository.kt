@@ -32,7 +32,7 @@ class CommentsRepository (val application: Application){
         } else comments
     }
 
-    private suspend fun getComments(albumId:Int): List<Comment>{
+    private fun getComments(albumId:Int): List<Comment>{
         val prefs = CacheManager.getPrefs(application.baseContext, CacheManager.ALBUMS_SPREFS)
         if(prefs.contains(albumId.toString())){
             val storedVal = prefs.getString(albumId.toString(), "")
@@ -40,15 +40,15 @@ class CommentsRepository (val application: Application){
                 val resp = JSONArray(storedVal)
                 Log.d("deserialize", resp.toString())
                 Log.d("Cache decision comments", "return ${resp.length()} elements from cache")
-                return format.decodeFromString<List<Comment>>(storedVal)
+                return format.decodeFromString(storedVal)
             }
         }
-        return listOf<Comment>()
+        return listOf()
     }
-    private suspend fun addComments(albumId:Int, comments: List<Comment>){
+    private fun addComments(albumId:Int, comments: List<Comment>){
         val prefs = CacheManager.getPrefs(application.baseContext, CacheManager.ALBUMS_SPREFS)
         if(!prefs.contains(albumId.toString())){
-            var store = format.encodeToString(comments)
+            val store = format.encodeToString(comments)
             with(prefs.edit(),{
                 putString(albumId.toString(), store)
                 apply()

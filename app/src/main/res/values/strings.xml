@@ -12,6 +12,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="txt_no_comments">No hay comentarios</string>
     <string name="title_comments">Comentarios</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="imagen_del_album">Imagen del album</string>
+    <string name="btn_ver_comentarios">Ver comentarios</string>
 </resources>
+

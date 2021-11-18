@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.uniandes.vinilo">
 
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -12,7 +13,9 @@
         android:usesCleartextTraffic="true"
         android:roundIcon="@drawable/ic_album"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Vinilo">
+        android:theme="@style/Theme.Vinilo"
+        android:fullBackupContent="@xml/backup_descriptor"
+        tools:ignore="UnusedAttribute">
         <activity
             android:name=".ui.MainActivity"
             android:exported="true"
