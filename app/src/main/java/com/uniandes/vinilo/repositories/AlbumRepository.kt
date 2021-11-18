@@ -43,10 +43,10 @@ class AlbumRepository(val application: Application) {
                 val resp = JSONArray(storedVal)
                 Log.d("deserialize", resp.toString())
                 Log.d("Cache decision albums", "return ${resp.length()} elements from cache")
-                return format.decodeFromString<List<Album>>(storedVal)
+                return format.decodeFromString(storedVal)
             }
         }
-        return listOf<Album>()
+        return listOf()
     }
 
     private fun addAlbums(albums: List<Album>) {

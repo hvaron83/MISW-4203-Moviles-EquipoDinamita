@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -48,13 +47,13 @@ class AlbumDetailFragment : Fragment() {
         Log.d("Args", args.albumId.toString())
         viewModel = ViewModelProvider(this, AlbumDetailViewModel.Factory(activity.application, args.albumId)).get(
             AlbumDetailViewModel::class.java)
-        viewModel.album.observe(viewLifecycleOwner, Observer<Album> {
+        viewModel.album.observe(viewLifecycleOwner, {
             it.apply {
                binding.album = this
                 loadImage(this)
             }
         })
-        viewModel.eventNetworkError.observe(viewLifecycleOwner, Observer<Boolean> { isNetworkError ->
+        viewModel.eventNetworkError.observe(viewLifecycleOwner, { isNetworkError ->
             if (isNetworkError) onNetworkError()
         })
         binding.comentariosButton.setOnClickListener{

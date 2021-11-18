@@ -5,7 +5,6 @@ import android.util.Log
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
-import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.uniandes.vinilo.models.Album
@@ -34,7 +33,7 @@ class NetworkServiceAdapter constructor(context: Context) {
     }
     suspend fun getAlbums() = suspendCoroutine<List<Album>>{ cont->
         requestQueue.add(getRequest("albums",
-            Response.Listener<String> { response ->
+            { response ->
                 val resp = JSONArray(response)
                 val list = mutableListOf<Album>()
                 for (i in 0 until resp.length()) {
@@ -43,13 +42,13 @@ class NetworkServiceAdapter constructor(context: Context) {
                 }
                 cont.resume(list)
             },
-            Response.ErrorListener {
+            {
                 cont.resumeWithException(it)
             }))
     }
     suspend fun getCollectors() = suspendCoroutine<List<Collector>>{ cont->
         requestQueue.add(getRequest("collectors",
-            Response.Listener<String> { response ->
+            { response ->
                 val resp = JSONArray(response)
                 val list = mutableListOf<Collector>()
                 for (i in 0 until resp.length()) {//inicializado como variable de retorno
@@ -59,13 +58,13 @@ class NetworkServiceAdapter constructor(context: Context) {
                 }
                 cont.resume(list)
             },
-            Response.ErrorListener {
+            {
                 cont.resumeWithException(it)
             }))
     }
     suspend fun getComments(albumId:Int) = suspendCoroutine<List<Comment>>{ cont->
         requestQueue.add(getRequest("albums/$albumId/comments",
-            Response.Listener<String> { response ->
+            { response ->
                 val resp = JSONArray(response)
                 val list = mutableListOf<Comment>()
                 var item:JSONObject? = null
@@ -76,19 +75,19 @@ class NetworkServiceAdapter constructor(context: Context) {
                 }
                 cont.resume(list)
             },
-            Response.ErrorListener {
+            {
                 cont.resumeWithException(it)
             }))
     }
     suspend fun getAlbum(albumId:Int) = suspendCoroutine<Album>{ cont->
         requestQueue.add(getRequest("albums/$albumId",
-            Response.Listener<String> { response ->
+            { response ->
                 val resp = JSONObject(response)
                 val album = Album(albumId = resp.getInt("id"),name = resp.getString("name"), cover = resp.getString("cover"), recordLabel = resp.getString("recordLabel"), releaseDate = resp.getString("releaseDate"), genre = resp.getString("genre"), description = resp.getString("description"))
 
                 cont.resume(album)
             },
-            Response.ErrorListener {
+            {
                 cont.resumeWithException(it)
             }))
     }
@@ -96,10 +95,10 @@ class NetworkServiceAdapter constructor(context: Context) {
     private fun getRequest(path:String, responseListener: Response.Listener<String>, errorListener: Response.ErrorListener): StringRequest {
         return StringRequest(Request.Method.GET, BASE_URL+path, responseListener,errorListener)
     }
-    private fun postRequest(path: String, body: JSONObject,  responseListener: Response.Listener<JSONObject>, errorListener: Response.ErrorListener ):JsonObjectRequest{
+    /*private fun postRequest(path: String, body: JSONObject,  responseListener: Response.Listener<JSONObject>, errorListener: Response.ErrorListener ):JsonObjectRequest{
         return  JsonObjectRequest(Request.Method.POST, BASE_URL+path, body, responseListener, errorListener)
     }
     private fun putRequest(path: String, body: JSONObject,  responseListener: Response.Listener<JSONObject>, errorListener: Response.ErrorListener ):JsonObjectRequest{
         return  JsonObjectRequest(Request.Method.PUT, BASE_URL+path, body, responseListener, errorListener)
-    }
+    }*/
 }

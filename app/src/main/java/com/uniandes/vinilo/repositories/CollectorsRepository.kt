@@ -38,10 +38,10 @@ class CollectorsRepository (val application: Application){
                 val resp = JSONArray(storedVal)
                 Log.d("deserialize", resp.toString())
                 Log.d("Cache decision collecto", "return ${resp.length()} elements from cache")
-                return format.decodeFromString<List<Collector>>(storedVal)
+                return format.decodeFromString(storedVal)
             }
         }
-        return listOf<Collector>()
+        return listOf()
     }
 
     private fun addCollectors(collectors: List<Collector>) {

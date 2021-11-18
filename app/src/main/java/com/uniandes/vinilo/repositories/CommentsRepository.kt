@@ -40,10 +40,10 @@ class CommentsRepository (val application: Application){
                 val resp = JSONArray(storedVal)
                 Log.d("deserialize", resp.toString())
                 Log.d("Cache decision comments", "return ${resp.length()} elements from cache")
-                return format.decodeFromString<List<Comment>>(storedVal)
+                return format.decodeFromString(storedVal)
             }
         }
-        return listOf<Comment>()
+        return listOf()
     }
     private fun addComments(albumId:Int, comments: List<Comment>){
         val prefs = CacheManager.getPrefs(application.baseContext, CacheManager.ALBUMS_SPREFS)

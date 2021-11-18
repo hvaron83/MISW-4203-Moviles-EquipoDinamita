@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package com.uniandes.vinilo.network
 
 import android.content.Context

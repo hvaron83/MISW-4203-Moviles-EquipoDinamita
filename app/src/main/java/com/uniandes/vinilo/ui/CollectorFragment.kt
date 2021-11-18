@@ -6,14 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.uniandes.vinilo.ui.adapters.CollectorsAdapter
 import com.uniandes.vinilo.R
 import com.uniandes.vinilo.databinding.CollectorFragmentBinding
-import com.uniandes.vinilo.models.Collector
+import com.uniandes.vinilo.ui.adapters.CollectorsAdapter
 import com.uniandes.vinilo.viewmodels.CollectorViewModel
 
 class CollectorFragment : Fragment() {
@@ -46,12 +44,12 @@ class CollectorFragment : Fragment() {
         }
         activity.actionBar?.title = getString(R.string.title_collectors)
         viewModel = ViewModelProvider(this, CollectorViewModel.Factory(activity.application)).get(CollectorViewModel::class.java)
-        viewModel.collectors.observe(viewLifecycleOwner, Observer<List<Collector>> {
+        viewModel.collectors.observe(viewLifecycleOwner, {
             it.apply {
                 viewModelAdapter!!.collectors = this
             }
         })
-        viewModel.eventNetworkError.observe(viewLifecycleOwner, Observer<Boolean> { isNetworkError ->
+        viewModel.eventNetworkError.observe(viewLifecycleOwner, { isNetworkError ->
             if (isNetworkError) onNetworkError()
         })
     }

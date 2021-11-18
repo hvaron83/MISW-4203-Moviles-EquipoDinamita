@@ -54,7 +54,7 @@ class CommentFragment : Fragment() {
         val args: CommentFragmentArgs  by navArgs()
         Log.d("Args", args.albumId.toString())
         viewModel = ViewModelProvider(this, CommentViewModel.Factory(activity.application, args.albumId)).get(CommentViewModel::class.java)
-        viewModel.comments.observe(viewLifecycleOwner, Observer<List<Comment>> {
+        viewModel.comments.observe(viewLifecycleOwner, {
             it.apply {
                 viewModelAdapter!!.comments = this
                 if(this.isEmpty()){
@@ -64,7 +64,7 @@ class CommentFragment : Fragment() {
                 }
             }
         })
-        viewModel.eventNetworkError.observe(viewLifecycleOwner, Observer<Boolean> { isNetworkError ->
+        viewModel.eventNetworkError.observe(viewLifecycleOwner, { isNetworkError ->
             if (isNetworkError) onNetworkError()
         })
     }
