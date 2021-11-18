@@ -22,7 +22,7 @@ import kotlin.coroutines.suspendCoroutine
 class NetworkServiceAdapter constructor(context: Context) {
     companion object{
         const val BASE_URL= "http://fierce-island-35443.herokuapp.com/"
-        var instance: NetworkServiceAdapter? = null
+        private var instance: NetworkServiceAdapter? = null
         fun getInstance(context: Context) =
             instance ?: synchronized(this) {
                 instance ?: NetworkServiceAdapter(context).also {
@@ -36,7 +36,7 @@ class NetworkServiceAdapter constructor(context: Context) {
     }
     suspend fun getAlbums() = suspendCoroutine<List<Album>>{ cont->
         requestQueue.add(getRequest("albums",
-            Response.Listener<String> { response ->
+            { response ->
                 val resp = JSONArray(response)
                 val list = mutableListOf<Album>()
                 for (i in 0 until resp.length()) {
@@ -45,13 +45,13 @@ class NetworkServiceAdapter constructor(context: Context) {
                 }
                 cont.resume(list)
             },
-            Response.ErrorListener {
+            {
                 cont.resumeWithException(it)
             }))
     }
     suspend fun getCollectors() = suspendCoroutine<List<Collector>>{ cont->
         requestQueue.add(getRequest("collectors",
-            Response.Listener<String> { response ->
+            { response ->
                 val resp = JSONArray(response)
                 val list = mutableListOf<Collector>()
                 for (i in 0 until resp.length()) {//inicializado como variable de retorno
@@ -61,13 +61,13 @@ class NetworkServiceAdapter constructor(context: Context) {
                 }
                 cont.resume(list)
             },
-            Response.ErrorListener {
+            {
                 cont.resumeWithException(it)
             }))
     }
     suspend fun getComments(albumId:Int) = suspendCoroutine<List<Comment>>{ cont->
         requestQueue.add(getRequest("albums/$albumId/comments",
-            Response.Listener<String> { response ->
+            { response ->
                 val resp = JSONArray(response)
                 val list = mutableListOf<Comment>()
                 var item:JSONObject? = null
@@ -78,25 +78,25 @@ class NetworkServiceAdapter constructor(context: Context) {
                 }
                 cont.resume(list)
             },
-            Response.ErrorListener {
+            {
                 cont.resumeWithException(it)
             }))
     }
     suspend fun getAlbum(albumId:Int) = suspendCoroutine<Album>{ cont->
         requestQueue.add(getRequest("albums/$albumId",
-            Response.Listener<String> { response ->
+            { response ->
                 val resp = JSONObject(response)
                 val album = Album(albumId = resp.getInt("id"),name = resp.getString("name"), cover = resp.getString("cover"), recordLabel = resp.getString("recordLabel"), releaseDate = resp.getString("releaseDate"), genre = resp.getString("genre"), description = resp.getString("description"))
 
                 cont.resume(album)
             },
-            Response.ErrorListener {
+            {
                 cont.resumeWithException(it)
             }))
     }
     suspend fun getBands() = suspendCoroutine<List<Artista>>{ cont->
         requestQueue.add(getRequest("bands",
-            Response.Listener<String> { response ->
+            { response ->
                 val resp = JSONArray(response)
                 val list = mutableListOf<Artista>()
                 for (i in 0 until resp.length()) {//inicializado como variable de retorno
@@ -112,13 +112,13 @@ class NetworkServiceAdapter constructor(context: Context) {
                 }
                 cont.resume(list)
             },
-            Response.ErrorListener {
+            {
                 cont.resumeWithException(it)
             }))
     }
     suspend fun getBand(artistaId:Int) = suspendCoroutine<Artista>{ cont->
         requestQueue.add(getRequest("bands/$artistaId",
-            Response.Listener<String> { response ->
+            { response ->
                 val resp = JSONObject(response)
                 val artista = Artista(
                     artistaId = resp.getInt("id"),
@@ -130,13 +130,13 @@ class NetworkServiceAdapter constructor(context: Context) {
 
                 cont.resume(artista)
             },
-            Response.ErrorListener {
+            {
                 cont.resumeWithException(it)
             }))
     }
     suspend fun getMusicians() = suspendCoroutine<List<Artista>>{ cont->
         requestQueue.add(getRequest("musicians",
-            Response.Listener<String> { response ->
+            { response ->
                 val resp = JSONArray(response)
                 val list = mutableListOf<Artista>()
                 for (i in 0 until resp.length()) {//inicializado como variable de retorno
@@ -152,13 +152,13 @@ class NetworkServiceAdapter constructor(context: Context) {
                 }
                 cont.resume(list)
             },
-            Response.ErrorListener {
+            {
                 cont.resumeWithException(it)
             }))
     }
     suspend fun getMusician(artistaId:Int) = suspendCoroutine<Artista>{ cont->
         requestQueue.add(getRequest("musicians/$artistaId",
-            Response.Listener<String> { response ->
+            { response ->
                 val resp = JSONObject(response)
                 val artista = Artista(
                     artistaId = resp.getInt("id"),
@@ -170,16 +170,9 @@ class NetworkServiceAdapter constructor(context: Context) {
 
                 cont.resume(artista)
             },
-            Response.ErrorListener {
+            {
                 cont.resumeWithException(it)
             }))
-    }
-
-    fun formatDate(odate : String): String {
-        val pattern = "yyyy-MM-dd"
-        val simpleDateFormat = SimpleDateFormat(pattern)
-        val date: String = simpleDateFormat.format(odate)
-        return date
     }
 
 

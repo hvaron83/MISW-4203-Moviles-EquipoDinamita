@@ -5,7 +5,7 @@ import com.uniandes.vinilo.models.Comment
 
 class CacheManager(context: Context) {
     companion object{
-        var instance: CacheManager? = null
+        private var instance: CacheManager? = null
         fun getInstance(context: Context) =
             instance ?: synchronized(this) {
                 instance ?: CacheManager(context).also {
@@ -20,6 +20,6 @@ class CacheManager(context: Context) {
         }
     }
     fun getComments(albumId: Int) : List<Comment>{
-        return if (comments.containsKey(albumId)) comments[albumId]!! else listOf<Comment>()
+        return if (comments.containsKey(albumId)) comments[albumId]!! else listOf()
     }
 }

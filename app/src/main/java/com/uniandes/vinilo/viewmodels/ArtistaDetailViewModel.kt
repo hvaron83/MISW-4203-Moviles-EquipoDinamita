@@ -17,12 +17,12 @@ class ArtistaDetailViewModel(application: Application, artistaId: Int) :  Androi
     val artista: LiveData<Artista>
         get() = _artista
 
-    private var _eventNetworkError = MutableLiveData<Boolean>(false)
+    private var _eventNetworkError = MutableLiveData(false)
 
     val eventNetworkError: LiveData<Boolean>
         get() = _eventNetworkError
 
-    private var _isNetworkErrorShown = MutableLiveData<Boolean>(false)
+    private var _isNetworkErrorShown = MutableLiveData(false)
 
     val isNetworkErrorShown: LiveData<Boolean>
         get() = _isNetworkErrorShown
@@ -37,7 +37,7 @@ class ArtistaDetailViewModel(application: Application, artistaId: Int) :  Androi
         try {
             viewModelScope.launch(Dispatchers.Default){
                 withContext(Dispatchers.IO){
-                    var data = artistasRepository.refreshDataDetail(id)
+                    val data = artistasRepository.refreshDataDetail(id)
                     _artista.postValue(data)
                 }
                 _eventNetworkError.postValue(false)
@@ -54,7 +54,7 @@ class ArtistaDetailViewModel(application: Application, artistaId: Int) :  Androi
         _isNetworkErrorShown.value = true
     }
 
-    class Factory(val app: Application, val artistaId: Int) : ViewModelProvider.Factory {
+    class Factory(val app: Application, private val artistaId: Int) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(ArtistaDetailViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")

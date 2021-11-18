@@ -1,7 +1,6 @@
 package com.uniandes.vinilo.repositories
 
 import android.app.Application
-import com.android.volley.VolleyError
 import com.uniandes.vinilo.models.Artista
 import com.uniandes.vinilo.network.NetworkServiceAdapter
 
@@ -18,7 +17,7 @@ class ArtistaRepository (val application: Application){
 
     suspend fun refreshDataDetail(artistaId: Int): Artista{
         //Determinar la fuente de datos que se va a utilizar. Si es necesario consultar la red, ejecutar el siguiente código
-        var band = NetworkServiceAdapter.getInstance(application).getBand(artistaId)
+        val band = NetworkServiceAdapter.getInstance(application).getBand(artistaId)
         var musician = NetworkServiceAdapter.getInstance(application).getMusician(artistaId)
         return band
     }
