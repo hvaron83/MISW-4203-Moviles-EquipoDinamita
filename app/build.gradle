@@ -5,6 +5,8 @@ plugins {
     id 'androidx.navigation.safeargs.kotlin'
 }
 
+apply plugin: "kotlinx-serialization"
+
 android {
     compileSdk 31
 
