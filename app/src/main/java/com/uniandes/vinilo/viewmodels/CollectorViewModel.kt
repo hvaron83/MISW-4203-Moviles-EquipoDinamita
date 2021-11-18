@@ -1,7 +1,6 @@
 package com.uniandes.vinilo.viewmodels
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.*
 import com.uniandes.vinilo.models.Collector
 import com.uniandes.vinilo.repositories.CollectorsRepository

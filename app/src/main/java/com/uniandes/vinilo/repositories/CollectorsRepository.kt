@@ -30,7 +30,7 @@ class CollectorsRepository (val application: Application){
         } else collectors
     }
 
-    private suspend fun getCollectors(): List<Collector> {
+    private fun getCollectors(): List<Collector> {
         val prefs = CacheManager.getPrefs(application.baseContext, CacheManager.ALBUMS_SPREFS)
         if(prefs.contains("collectors")){
             val storedVal = prefs.getString("collectors", "")
@@ -44,7 +44,7 @@ class CollectorsRepository (val application: Application){
         return listOf<Collector>()
     }
 
-    private suspend fun addCollectors(collectors: List<Collector>) {
+    private fun addCollectors(collectors: List<Collector>) {
         val prefs = CacheManager.getPrefs(application.baseContext, CacheManager.ALBUMS_SPREFS)
         if(!prefs.contains("collectors")) {
             var store = format.encodeToString(collectors)

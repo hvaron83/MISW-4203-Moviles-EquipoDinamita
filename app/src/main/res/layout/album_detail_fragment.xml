@@ -14,7 +14,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            tools:ignore="UselessParent">
 
             <ImageView
                 android:id="@+id/album_cover"
@@ -77,7 +78,7 @@
                     android:id="@+id/comentariosButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Ver comentarios"
+                    android:text="@string/btn_ver_comentarios"
                     />
 
 
