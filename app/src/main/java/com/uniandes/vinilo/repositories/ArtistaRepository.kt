@@ -104,4 +104,15 @@ class ArtistaRepository(val application: Application) {
         return band
     }
 
+    suspend fun refreshDataDetailArtist(artistaId: Int, artistaType: Int): Artista{
+        //Determinar la fuente de datos que se va a utilizar. Si es necesario consultar la red, ejecutar el siguiente código
+        if (artistaType == NetworkServiceAdapter.BAND_TYPE) {
+            return refreshDataDetailBand(artistaId)
+        }
+        else {
+            return refreshDataDetailMusician(artistaId)
+        }
+    }
+
+
 }

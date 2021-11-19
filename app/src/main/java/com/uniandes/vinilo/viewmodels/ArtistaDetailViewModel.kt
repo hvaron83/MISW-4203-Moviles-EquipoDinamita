@@ -8,7 +8,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class ArtistaDetailViewModel(application: Application, artistaId: Int) :  AndroidViewModel(application) {
+class ArtistaDetailViewModel(application: Application, artistaId: Int, artistaType: Int) :  AndroidViewModel(application) {
 
     private val artistasRepository = ArtistaRepository(application)
 
@@ -29,6 +29,8 @@ class ArtistaDetailViewModel(application: Application, artistaId: Int) :  Androi
 
     val id:Int = artistaId
 
+    val type:Int = artistaType
+
     init {
         refreshDataFromNetwork()
     }
@@ -37,8 +39,7 @@ class ArtistaDetailViewModel(application: Application, artistaId: Int) :  Androi
         try {
             viewModelScope.launch(Dispatchers.Default){
                 withContext(Dispatchers.IO){
-                    // Todo: cambiar para que tambien consuma musicos refreshDataDetailMusician(id)
-                    val data = artistasRepository.refreshDataDetailBand(id)
+                    val data = artistasRepository.refreshDataDetailArtist(id, type)
                     _artista.postValue(data)
                 }
                 _eventNetworkError.postValue(false)
@@ -55,11 +56,11 @@ class ArtistaDetailViewModel(application: Application, artistaId: Int) :  Androi
         _isNetworkErrorShown.value = true
     }
 
-    class Factory(val app: Application, private val artistaId: Int) : ViewModelProvider.Factory {
+    class Factory(val app: Application, private val artistaId: Int, private val artistaType: Int) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(ArtistaDetailViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")
-                return ArtistaDetailViewModel(app, artistaId) as T
+                return ArtistaDetailViewModel(app, artistaId, artistaType) as T
             }
             throw IllegalArgumentException("Unable to construct viewmodel")
         }

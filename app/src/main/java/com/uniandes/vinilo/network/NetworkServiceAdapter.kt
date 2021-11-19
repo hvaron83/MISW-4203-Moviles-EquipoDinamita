@@ -20,7 +20,10 @@ import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 
 class NetworkServiceAdapter constructor(context: Context) {
+
     companion object{
+        const val BAND_TYPE = 1
+        const val MUSICIAN_TYPE = 2
         const val BASE_URL= "http://fierce-island-35443.herokuapp.com/"
         private var instance: NetworkServiceAdapter? = null
         fun getInstance(context: Context) =
@@ -108,7 +111,8 @@ class NetworkServiceAdapter constructor(context: Context) {
                         name = item.getString("name"),
                         date = item.getString("creationDate"),
                         description = item.getString("description"),
-                        image = item.getString("image")
+                        image = item.getString("image"),
+                        artistaType = BAND_TYPE
                     )) //se agrega a medida que se procesa la respuesta
                 }
                 cont.resume(list)
@@ -126,7 +130,8 @@ class NetworkServiceAdapter constructor(context: Context) {
                     name = resp.getString("name"),
                     date = resp.getString("creationDate"),
                     description = resp.getString("description"),
-                    image = resp.getString("image")
+                    image = resp.getString("image"),
+                    artistaType = BAND_TYPE
                 ))
             },
             {
@@ -145,7 +150,8 @@ class NetworkServiceAdapter constructor(context: Context) {
                         name = item.getString("name"),
                         date = item.getString("birthDate"),
                         description = item.getString("description"),
-                        image = item.getString("image")
+                        image = item.getString("image"),
+                        artistaType = MUSICIAN_TYPE
                     )) //se agrega a medida que se procesa la respuesta
                 }
                 cont.resume(list)
@@ -163,7 +169,8 @@ class NetworkServiceAdapter constructor(context: Context) {
                     name = resp.getString("name"),
                     date = resp.getString("birthDate"),
                     description = resp.getString("description"),
-                    image = resp.getString("image")
+                    image = resp.getString("image"),
+                    artistaType = MUSICIAN_TYPE
                 ))
             },
             {
