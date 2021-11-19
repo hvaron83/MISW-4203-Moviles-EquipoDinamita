@@ -3,6 +3,8 @@
 package com.uniandes.vinilo.network
 
 import android.content.Context
+import com.uniandes.vinilo.models.Artista
+import com.uniandes.vinilo.models.Comment
 import android.content.SharedPreferences
 
 class CacheManager(context: Context) {
@@ -16,11 +18,12 @@ class CacheManager(context: Context) {
             }
         const val APP_SPREFS = "com.uniandes.vinilo.app"
         const val ALBUMS_SPREFS = "com.uniandes.vinilo.albums"
+        const val BANDS_SPREFS = "com.uniandes.vinilo.bands"
+        const val MUSICIANS_SPREFS = "com.uniandes.vinilo.musicians"
         fun getPrefs(context: Context, name:String): SharedPreferences {
             return context.getSharedPreferences(name,
                 Context.MODE_PRIVATE
             )
         }
     }
-
 }

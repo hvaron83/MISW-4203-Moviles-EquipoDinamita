@@ -14,12 +14,21 @@
             app:destination="@id/detailAlbumFragment" />
     </fragment>
 
-
     <fragment
         android:id="@+id/navigation_collector"
         android:name="com.uniandes.vinilo.ui.CollectorFragment"
         android:label="@string/title_collector"
         tools:layout="@layout/collector_fragment" />
+
+    <fragment
+        android:id="@+id/navigation_artista"
+        android:name="com.uniandes.vinilo.ui.ArtistaFragment"
+        android:label="@string/title_artista"
+        tools:layout="@layout/artista_fragment" >
+        <action
+            android:id="@+id/action_artistaFragment_to_artistaDetailFragment"
+            app:destination="@id/detailArtistaFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/detailAlbumFragment"
@@ -41,6 +50,16 @@
         tools:layout="@layout/comment_fragment" >
         <argument
             android:name="albumId"
+            app:argType="integer" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/detailArtistaFragment"
+        android:name="com.uniandes.vinilo.ui.ArtistaDetailFragment"
+        android:label="@string/detail_artista_title"
+        tools:layout="@layout/artista_detail_fragment" >
+        <argument
+            android:name="artistaId"
             app:argType="integer" />
     </fragment>
 
