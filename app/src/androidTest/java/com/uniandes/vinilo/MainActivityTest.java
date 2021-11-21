@@ -4,9 +4,14 @@ package com.uniandes.vinilo;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.matcher.ViewMatchers.isClickable;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.isEnabled;
+import static androidx.test.espresso.matcher.ViewMatchers.isNotChecked;
+import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.matcher.ViewMatchers.withParent;
+import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static androidx.test.internal.util.Checks.checkNotNull;
 import static org.hamcrest.Matchers.allOf;
 
@@ -15,13 +20,16 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.test.espresso.ViewAction;
+import androidx.test.espresso.ViewInteraction;
 import androidx.test.espresso.contrib.RecyclerViewActions;
 import androidx.test.espresso.matcher.BoundedMatcher;
 import androidx.test.filters.LargeTest;
 import androidx.test.rule.ActivityTestRule;
 import androidx.test.runner.AndroidJUnit4;
 
-import com.uniandes.vinilo.ui.MainActivity;
+import com.uniandes.vinilo.ui.album.OnClickListener;
+import com.uniandes.vinilo.ui.album.viewModel.AlbumViewModel;
 
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
@@ -40,7 +48,7 @@ public class MainActivityTest {
 
     @Test
     public void testListaVisible() {
-        onView(withId(R.id.albumsRv)).check(matches(isDisplayed()));
+        onView(withId(R.id.recyclerView)).check(matches(isDisplayed()));
     }
 
     @Test
@@ -50,7 +58,7 @@ public class MainActivityTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        onView(withId(R.id.albumsRv)).perform(RecyclerViewActions.actionOnItemAtPosition(0,click()));
+        onView(withId(R.id.recyclerView)).perform(RecyclerViewActions.actionOnItemAtPosition(0,click()));
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
@@ -60,7 +68,7 @@ public class MainActivityTest {
 
     @Test
     public void testCountItems() {
-        Matcher<View> m = allOf(withId(R.id.albumsRv),
+        Matcher<View> m = allOf(withId(R.id.recyclerView),
                 isDisplayed());
         try {
             Thread.sleep(2000);

@@ -1,18 +1,9 @@
 <resources>
     <string name="app_name">Vinilos</string>
     <string name="title_home">Albumes</string>
-    <string name="title_artista">Artistas</string>
+    <string name="title_artist">Artistas</string>
     <string name="title_collector">Coleccionistas</string>
-    <string name="detail_album_title">Detalle del álbum</string>
     <string name="description_img_photo">Imagen del album</string>
-    <string name="description_img_photo_artista">Imagen del artista</string>
-    <string name="detail_artista_title">Detalle del artista</string>
-    <string name="title_albums">Albumes</string>
-    <string name="title_collectors">Coleccionistas</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="txt_no_comments">No hay comentarios</string>
-    <string name="title_comments">Comentarios</string>
-    <string name="imagen_del_album">Imagen del album</string>
-    <string name="btn_ver_comentarios">Ver comentarios</string>
+    <string name="detail_album_title">Detalle del álbum</string>
+    <string name="description_album_photo">Imagen del album</string>
 </resources>
-
