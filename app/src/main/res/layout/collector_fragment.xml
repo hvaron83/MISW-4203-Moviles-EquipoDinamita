@@ -11,6 +11,6 @@
         android:id="@+id/fragments_rv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:contentDescription="Item coleccionista"
+        android:contentDescription="@string/descripcion_coleccionista"
         tools:listitem="@layout/collector_item" />
 </FrameLayout>

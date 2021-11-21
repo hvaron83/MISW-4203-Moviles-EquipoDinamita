@@ -1,13 +1,12 @@
 package com.uniandes.vinilo.ui
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.net.toUri
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
@@ -16,7 +15,6 @@ import com.bumptech.glide.request.RequestOptions
 import com.uniandes.vinilo.R
 import com.uniandes.vinilo.databinding.ArtistaDetailFragmentBinding
 import com.uniandes.vinilo.models.Artista
-import com.uniandes.vinilo.viewmodels.AlbumDetailViewModel
 import com.uniandes.vinilo.viewmodels.ArtistaDetailViewModel
 
 

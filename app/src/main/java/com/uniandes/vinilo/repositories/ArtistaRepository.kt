@@ -38,16 +38,16 @@ class ArtistaRepository(val application: Application) {
                 val resp = JSONArray(storedVal)
                 Log.d("deserialize", resp.toString())
                 Log.d("Cache decision bands", "return ${resp.length()} elements from cache")
-                return format.decodeFromString<List<Artista>>(storedVal)
+                return format.decodeFromString(storedVal)
             }
         }
-        return listOf<Artista>()
+        return listOf()
     }
 
     private fun addBands(bands: List<Artista>) {
         val prefs = CacheManager.getPrefs(application.baseContext, CacheManager.BANDS_SPREFS)
         if(!prefs.contains("bands")) {
-            var store = format.encodeToString(bands)
+            val store = format.encodeToString(bands)
             with(prefs.edit(), {
                 putString("bands", store)
                 apply()
@@ -77,15 +77,15 @@ class ArtistaRepository(val application: Application) {
                 val resp = JSONArray(storedVal)
                 Log.d("deserialize", resp.toString())
                 Log.d("Cache decision music", "return ${resp.length()} elements from cache")
-                return format.decodeFromString<List<Artista>>(storedVal)
+                return format.decodeFromString(storedVal)
             }
         }
-        return listOf<Artista>()
+        return listOf()
     }
     private fun addMusicians(musicians: List<Artista>) {
         val prefs = CacheManager.getPrefs(application.baseContext, CacheManager.MUSICIANS_SPREFS)
         if(!prefs.contains("musicians")) {
-            var store = format.encodeToString(musicians)
+            val store = format.encodeToString(musicians)
             with(prefs.edit(), {
                 putString("musicians", store)
                 apply()
@@ -93,24 +93,21 @@ class ArtistaRepository(val application: Application) {
         }
     }
 
-    suspend fun refreshDataDetailBand(artistaId: Int): Artista{
+    private suspend fun refreshDataDetailBand(artistaId: Int): Artista {
         //Determinar la fuente de datos que se va a utilizar. Si es necesario consultar la red, ejecutar el siguiente código
-        val band = NetworkServiceAdapter.getInstance(application).getBand(artistaId)
-        return band
+        return NetworkServiceAdapter.getInstance(application).getBand(artistaId)
     }
-    suspend fun refreshDataDetailMusician(artistaId: Int): Artista{
+    private suspend fun refreshDataDetailMusician(artistaId: Int): Artista {
         //Determinar la fuente de datos que se va a utilizar. Si es necesario consultar la red, ejecutar el siguiente código
-        val band = NetworkServiceAdapter.getInstance(application).getMusician(artistaId)
-        return band
+        return NetworkServiceAdapter.getInstance(application).getMusician(artistaId)
     }
 
     suspend fun refreshDataDetailArtist(artistaId: Int, artistaType: Int): Artista{
         //Determinar la fuente de datos que se va a utilizar. Si es necesario consultar la red, ejecutar el siguiente código
-        if (artistaType == NetworkServiceAdapter.BAND_TYPE) {
-            return refreshDataDetailBand(artistaId)
-        }
-        else {
-            return refreshDataDetailMusician(artistaId)
+        return if (artistaType == NetworkServiceAdapter.BAND_TYPE) {
+            refreshDataDetailBand(artistaId)
+        } else {
+            refreshDataDetailMusician(artistaId)
         }
     }
 

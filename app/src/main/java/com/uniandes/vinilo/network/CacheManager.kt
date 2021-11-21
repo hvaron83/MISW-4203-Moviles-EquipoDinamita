@@ -3,8 +3,6 @@
 package com.uniandes.vinilo.network
 
 import android.content.Context
-import com.uniandes.vinilo.models.Artista
-import com.uniandes.vinilo.models.Comment
 import android.content.SharedPreferences
 
 class CacheManager(context: Context) {

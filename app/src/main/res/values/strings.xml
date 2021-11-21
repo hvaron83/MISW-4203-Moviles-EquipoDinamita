@@ -14,5 +14,7 @@
     <string name="title_comments">Comentarios</string>
     <string name="imagen_del_album">Imagen del album</string>
     <string name="btn_ver_comentarios">Ver comentarios</string>
+    <string name="descripcion_album">Item album</string>
+    <string name="descripcion_coleccionista">Item coleccionista</string>
 </resources>
 
