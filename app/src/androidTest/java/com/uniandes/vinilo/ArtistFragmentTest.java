@@ -1,6 +1,5 @@
 package com.uniandes.vinilo;
 
-
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
@@ -17,9 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.test.espresso.contrib.RecyclerViewActions;
 import androidx.test.espresso.matcher.BoundedMatcher;
-import androidx.test.filters.LargeTest;
 import androidx.test.rule.ActivityTestRule;
-import androidx.test.runner.AndroidJUnit4;
 
 import com.uniandes.vinilo.ui.MainActivity;
 
@@ -27,20 +24,23 @@ import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
-@LargeTest
-@RunWith(AndroidJUnit4.class)
-public class MainActivityTest {
-
+public class ArtistFragmentTest {
     @Rule
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
 
+    @Before
+    public void navegarArtistas(){
+        onView(withId(R.id.navigation_artista)).perform(click());
+    }
+
+
     @Test
     public void testListaVisible() {
-        onView(withId(R.id.albumsRv)).check(matches(isDisplayed()));
+        onView(withId(R.id.artistasRv)).check(matches(isDisplayed()));
     }
 
     @Test
@@ -50,7 +50,7 @@ public class MainActivityTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        onView(withId(R.id.albumsRv)).perform(RecyclerViewActions.actionOnItemAtPosition(0,click()));
+        onView(withId(R.id.artistasRv)).perform(RecyclerViewActions.actionOnItemAtPosition(0,click()));
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
@@ -60,7 +60,7 @@ public class MainActivityTest {
 
     @Test
     public void testCountItems() {
-        Matcher<View> m = allOf(withId(R.id.albumsRv),
+        Matcher<View> m = allOf(withId(R.id.artistasRv),
                 isDisplayed());
         try {
             Thread.sleep(2000);
@@ -108,5 +108,4 @@ public class MainActivityTest {
             }
         };
     }
-
 }
