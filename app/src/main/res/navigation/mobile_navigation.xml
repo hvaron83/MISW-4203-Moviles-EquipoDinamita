@@ -2,68 +2,24 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
     app:startDestination="@+id/navigation_home">
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.uniandes.vinilo.ui.AlbumFragment"
-        android:label="@string/title_albums"
-        tools:layout="@layout/album_fragment" >
-        <action
-            android:id="@+id/action_albumFragment_to_albumDetailFragment"
-            app:destination="@id/detailAlbumFragment" />
-    </fragment>
+        android:name="com.uniandes.vinilo.ui.album.AlbumFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_album" />
+
+    <fragment
+        android:id="@+id/navigation_artist"
+        android:name="com.uniandes.vinilo.ui.artist.ArtistFragment"
+        android:label="@string/title_artist"
+        tools:layout="@layout/fragment_artist" />
 
     <fragment
         android:id="@+id/navigation_collector"
-        android:name="com.uniandes.vinilo.ui.CollectorFragment"
+        android:name="com.uniandes.vinilo.ui.collector.CollectorFragment"
         android:label="@string/title_collector"
-        tools:layout="@layout/collector_fragment" />
-
-    <fragment
-        android:id="@+id/navigation_artista"
-        android:name="com.uniandes.vinilo.ui.ArtistaFragment"
-        android:label="@string/title_artista"
-        tools:layout="@layout/artista_fragment" >
-        <action
-            android:id="@+id/action_artistaFragment_to_artistaDetailFragment"
-            app:destination="@id/detailArtistaFragment" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/detailAlbumFragment"
-        android:name="com.uniandes.vinilo.ui.AlbumDetailFragment"
-        android:label="@string/detail_album_title"
-        tools:layout="@layout/album_detail_fragment" >
-        <argument
-            android:name="albumId"
-            app:argType="integer" />
-        <action
-            android:id="@+id/action_albumFragment_to_commentFragment"
-            app:destination="@id/commentFragment" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/commentFragment"
-        android:name="com.uniandes.vinilo.ui.CommentFragment"
-        android:label="@string/title_comments"
-        tools:layout="@layout/comment_fragment" >
-        <argument
-            android:name="albumId"
-            app:argType="integer" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/detailArtistaFragment"
-        android:name="com.uniandes.vinilo.ui.ArtistaDetailFragment"
-        android:label="@string/detail_artista_title"
-        tools:layout="@layout/artista_detail_fragment" >
-        <argument
-            android:name="artistaId"
-            app:argType="integer" />
-        <argument
-            android:name="artistaType"
-            app:argType="integer" />
-    </fragment>
-
+        tools:layout="@layout/fragment_collector" />
 </navigation>
