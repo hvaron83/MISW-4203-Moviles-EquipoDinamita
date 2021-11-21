@@ -27,20 +27,27 @@ import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class MainActivityTest {
+public class CollectorFragmentTest {
 
     @Rule
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
 
+    @Before
+    public void navegarColeccionistas(){
+        onView(withId(R.id.navigation_collector)).perform(click());
+    }
+
+
     @Test
     public void testListaVisible() {
-        onView(withId(R.id.albumsRv)).check(matches(isDisplayed()));
+        onView(withId(R.id.fragments_rv)).check(matches(isDisplayed()));
     }
 
     @Test
@@ -50,7 +57,7 @@ public class MainActivityTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        onView(withId(R.id.albumsRv)).perform(RecyclerViewActions.actionOnItemAtPosition(0,click()));
+        onView(withId(R.id.fragments_rv)).perform(RecyclerViewActions.actionOnItemAtPosition(0,click()));
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
@@ -60,7 +67,7 @@ public class MainActivityTest {
 
     @Test
     public void testCountItems() {
-        Matcher<View> m = allOf(withId(R.id.albumsRv),
+        Matcher<View> m = allOf(withId(R.id.fragments_rv),
                 isDisplayed());
         try {
             Thread.sleep(2000);
