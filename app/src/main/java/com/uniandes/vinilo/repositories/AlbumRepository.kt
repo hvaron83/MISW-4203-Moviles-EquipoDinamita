@@ -35,6 +35,13 @@ class AlbumRepository(val application: Application) {
         return NetworkServiceAdapter.getInstance(application).getAlbum(albumId)
     }
 
+    suspend fun guardarAlbum(album: Album): Album {
+        //Mirar el metodo de cache por el momento se elimina para volver a consultar
+        val a = NetworkServiceAdapter.getInstance(application).addAlbum(album)
+        addAlbum(a)
+        return a
+    }
+
     private fun getAlbums(): List<Album> {
         val prefs = CacheManager.getPrefs(application.baseContext, CacheManager.ALBUMS_SPREFS)
         if(prefs.contains("albums")){
@@ -57,6 +64,19 @@ class AlbumRepository(val application: Application) {
                 putString("albums", store)
                 apply()
             })
+        }
+    }
+
+    private fun addAlbum(album: Album) {
+        val prefs = CacheManager.getPrefs(application.baseContext, CacheManager.ALBUMS_SPREFS)
+        if(prefs.contains("albums")){
+            val storedVal = prefs.getString("albums", "")
+            if(!storedVal.isNullOrBlank()){
+                val resp = JSONArray(storedVal)
+                val list:MutableList<Album>  = format.decodeFromString(storedVal)
+                list.add(album)
+                addAlbums(list)
+            }
         }
     }
 
