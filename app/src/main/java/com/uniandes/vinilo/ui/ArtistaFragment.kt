@@ -42,7 +42,7 @@ class ArtistaFragment : Fragment() {
         val activity = requireNotNull(this.activity) {
             "You can only access the viewModel after onActivityCreated()"
         }
-        activity.actionBar?.title = getString(R.string.title_artista)
+        activity.actionBar?.title = getString(R.string.title_artistas)
         viewModel = ViewModelProvider(this, ArtistaViewModel.Factory(activity.application))[ArtistaViewModel::class.java]
         viewModel.artistas.observe(viewLifecycleOwner, {
             it.apply {
