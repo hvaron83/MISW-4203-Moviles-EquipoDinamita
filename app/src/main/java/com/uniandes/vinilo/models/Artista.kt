@@ -8,6 +8,6 @@ data class Artista(
     var artistaType: Int,
     var name: String = "",
     var image: String,
-    var date: String,
-    var description: String
+    var date: String = "",
+    var description: String = ""
 ): java.io.Serializable
