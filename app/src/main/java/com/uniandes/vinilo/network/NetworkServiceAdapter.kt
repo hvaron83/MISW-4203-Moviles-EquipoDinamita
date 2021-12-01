@@ -95,8 +95,6 @@ class NetworkServiceAdapter constructor(context: Context) {
                 cont.resumeWithException(it)
             }))
     }
-
-
     suspend fun getBands() = suspendCoroutine<List<Artista>>{ cont->
         requestQueue.add(getRequest("bands",
             { response ->
@@ -175,7 +173,21 @@ class NetworkServiceAdapter constructor(context: Context) {
                 cont.resumeWithException(it)
             }))
     }
-
+    suspend fun getCollector(collectorId:Int) = suspendCoroutine<Collector>{ cont->
+        requestQueue.add(getRequest("collectors/$collectorId",
+            { response ->
+                val resp = JSONObject(response)
+                cont.resume(Collector(
+                    collectorId = resp.getInt("id"),
+                    name = resp.getString("name"),
+                    telephone = resp.getString("telephone"),
+                    email = resp.getString("email")
+                ))
+            },
+            {
+                cont.resumeWithException(it)
+            }))
+    }
 
     private fun getRequest(path:String, responseListener: Response.Listener<String>, errorListener: Response.ErrorListener): StringRequest {
         return StringRequest(Request.Method.GET, BASE_URL+path, responseListener,errorListener)

@@ -9,6 +9,7 @@
     <string name="detail_artista_title">Detalle del artista</string>
     <string name="title_albums">Albumes</string>
     <string name="title_collectors">Coleccionistas</string>
+    <string name="detail_collector_title">Detalle del coleccionista</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="txt_no_comments">No hay comentarios</string>
     <string name="title_comments">Comentarios</string>
