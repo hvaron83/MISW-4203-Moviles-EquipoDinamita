@@ -3,16 +3,21 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/rmatiz/Documents/ProyectoMoviles/MISW-4203-Moviles-EquipoDinamita/app/src/main/res/drawable/ic_add.xml" value="0.28854166666666664" />
+        <entry key="..\:/Users/rmatiz/Documents/ProyectoMoviles/MISW-4203-Moviles-EquipoDinamita/app/src/main/res/drawable/ic_album.xml" value="0.28854166666666664" />
+        <entry key="..\:/Users/rmatiz/Documents/ProyectoMoviles/MISW-4203-Moviles-EquipoDinamita/app/src/main/res/drawable/ic_playlist_add.xml" value="0.28854166666666664" />
         <entry key="..\:/Users/rmatiz/Documents/ProyectoMoviles/MISW-4203-Moviles-EquipoDinamita/app/src/main/res/layout/activity_main.xml" value="0.1884498480243161" />
         <entry key="..\:/Users/rmatiz/Documents/ProyectoMoviles/MISW-4203-Moviles-EquipoDinamita/app/src/main/res/layout/album_detail_fragment.xml" value="0.265625" />
         <entry key="..\:/Users/rmatiz/Documents/ProyectoMoviles/MISW-4203-Moviles-EquipoDinamita/app/src/main/res/layout/album_fragment.xml" value="0.3875" />
         <entry key="..\:/Users/rmatiz/Documents/ProyectoMoviles/MISW-4203-Moviles-EquipoDinamita/app/src/main/res/layout/album_item.xml" value="0.3875" />
+        <entry key="..\:/Users/rmatiz/Documents/ProyectoMoviles/MISW-4203-Moviles-EquipoDinamita/app/src/main/res/layout/album_register_fragment.xml" value="0.27239583333333334" />
         <entry key="..\:/Users/rmatiz/Documents/ProyectoMoviles/MISW-4203-Moviles-EquipoDinamita/app/src/main/res/layout/artist_fragment.xml" value="0.3875" />
         <entry key="..\:/Users/rmatiz/Documents/ProyectoMoviles/MISW-4203-Moviles-EquipoDinamita/app/src/main/res/layout/collector_fragment.xml" value="0.3875" />
         <entry key="..\:/Users/rmatiz/Documents/ProyectoMoviles/MISW-4203-Moviles-EquipoDinamita/app/src/main/res/layout/collector_item.xml" value="0.3875" />
         <entry key="..\:/Users/rmatiz/Documents/ProyectoMoviles/MISW-4203-Moviles-EquipoDinamita/app/src/main/res/layout/comment_fragment.xml" value="0.265625" />
         <entry key="..\:/Users/rmatiz/Documents/ProyectoMoviles/MISW-4203-Moviles-EquipoDinamita/app/src/main/res/layout/comment_item.xml" value="0.265625" />
         <entry key="..\:/Users/rmatiz/Documents/ProyectoMoviles/MISW-4203-Moviles-EquipoDinamita/app/src/main/res/menu/bottom_nav_menu.xml" value="0.23489583333333333" />
+        <entry key="..\:/Users/rmatiz/Documents/ProyectoMoviles/MISW-4203-Moviles-EquipoDinamita/app/src/main/res/menu/menu_save.xml" value="0.3734375" />
         <entry key="..\:/Users/rmatiz/StudioProjects/Vinilo/app/src/main/res/layout/activity_main.xml" value="0.26666666666666666" />
         <entry key="..\:/Users/rmatiz/StudioProjects/Vinilo/app/src/main/res/layout/fragment_detail_album.xml" value="0.3875" />
         <entry key="..\:/Users/rmatiz/StudioProjects/Vinilo/app/src/main/res/layout/fragment_home.xml" value="0.1796875" />
@@ -26,5 +31,8 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="SuppressKotlinCodeStyleNotification">
+    <option name="disableForAll" value="true" />
   </component>
 </project>
