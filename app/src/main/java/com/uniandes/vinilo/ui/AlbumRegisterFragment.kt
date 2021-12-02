@@ -16,6 +16,7 @@ import com.uniandes.vinilo.R
 import com.uniandes.vinilo.databinding.AlbumRegisterFragmentBinding
 import com.uniandes.vinilo.models.Album
 import com.uniandes.vinilo.viewmodels.AlbumRegisterViewModel
+import com.uniandes.vinilo.viewmodels.AlbumViewModel
 
 class AlbumRegisterFragment : Fragment() {
 
@@ -84,13 +85,17 @@ class AlbumRegisterFragment : Fragment() {
             }
             R.id.action_save -> {
                 if (validateFields(mBinding.tilPhotoUrl, mBinding.tilPhone, mBinding.tilName)){
+                    album = Album(null)
                     with(album){
                         name = mBinding.etName.text.toString().trim()
                         genre = mBinding.etPhone.text.toString().trim()
                         cover = mBinding.etPhotoUrl.text.toString().trim()
+                        description = "prueba"
+                        recordLabel = "Elektra"
+                        releaseDate = "1984-08-01T00:00:00-05:00"
                     }
 
-                    //albumRegisterViewModel.saveAlbum(album)
+                    albumRegisterViewModel.saveAlbum(album)
 
                 }
                 true

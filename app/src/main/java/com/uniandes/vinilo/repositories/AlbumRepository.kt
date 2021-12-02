@@ -72,10 +72,13 @@ class AlbumRepository(val application: Application) {
         if(prefs.contains("albums")){
             val storedVal = prefs.getString("albums", "")
             if(!storedVal.isNullOrBlank()){
-                val resp = JSONArray(storedVal)
                 val list:MutableList<Album>  = format.decodeFromString(storedVal)
-                list.add(album)
-                addAlbums(list)
+                list.add(0,album)
+                val store = format.encodeToString(list)
+                with(prefs.edit(), {
+                    putString("albums", store)
+                    apply()
+                })
             }
         }
     }

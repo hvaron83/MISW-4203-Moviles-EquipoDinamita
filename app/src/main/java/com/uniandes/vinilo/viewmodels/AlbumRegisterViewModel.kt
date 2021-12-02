@@ -4,6 +4,9 @@ import android.app.Application
 import androidx.lifecycle.*
 import com.uniandes.vinilo.models.Album
 import com.uniandes.vinilo.repositories.AlbumRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class AlbumRegisterViewModel(application: Application) : AndroidViewModel(application){
     private val albumsRepository = AlbumRepository(application)
@@ -20,8 +23,19 @@ class AlbumRegisterViewModel(application: Application) : AndroidViewModel(applic
         get() = _isNetworkErrorShown
 
 
-    suspend fun saveAlbum(album: Album){
-        albumsRepository.guardarAlbum(album)
+    public fun saveAlbum(album: Album){
+        try {
+            viewModelScope.launch(Dispatchers.Default){
+                withContext(Dispatchers.IO){
+                    albumsRepository.guardarAlbum(album)
+                }
+                _eventNetworkError.postValue(false)
+                _isNetworkErrorShown.postValue(false)
+            }
+        }
+        catch (e:Exception){
+            _eventNetworkError.value = true
+        }
     }
 
     fun onNetworkErrorShown() {
