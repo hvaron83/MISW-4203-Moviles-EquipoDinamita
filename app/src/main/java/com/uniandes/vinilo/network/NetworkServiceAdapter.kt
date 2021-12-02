@@ -34,18 +34,23 @@ class NetworkServiceAdapter constructor(context: Context) {
                 }
             }
     }
+
     private val requestQueue: RequestQueue by lazy {
         // applicationContext keeps you from leaking the Activity or BroadcastReceiver if someone passes one in.
         Volley.newRequestQueue(context.applicationContext)
     }
+
     suspend fun getAlbums() = suspendCoroutine<List<Album>>{ cont->
         requestQueue.add(getRequest("albums",
             { response ->
                 val resp = JSONArray(response)
                 val list = mutableListOf<Album>()
+                var item:JSONObject? = null
                 for (i in 0 until resp.length()) {
-                    val item = resp.getJSONObject(i)
-                    list.add(i, Album(albumId = item.getInt("id"),name = item.getString("name"), cover = item.getString("cover"), recordLabel = item.getString("recordLabel"), releaseDate = item.getString("releaseDate"), genre = item.getString("genre"), description = item.getString("description")))
+                    item = resp.getJSONObject(i)
+                    list.add(i, Album(albumId = item.getInt("id"),
+                        cover = item.getString("cover"),
+                        description = item.getString("description")))
                 }
                 cont.resume(list)
             },
@@ -53,13 +58,15 @@ class NetworkServiceAdapter constructor(context: Context) {
                 cont.resumeWithException(it)
             }))
     }
+
     suspend fun getCollectors() = suspendCoroutine<List<Collector>>{ cont->
         requestQueue.add(getRequest("collectors",
             { response ->
                 val resp = JSONArray(response)
                 val list = mutableListOf<Collector>()
+                var item:JSONObject? = null
                 for (i in 0 until resp.length()) {//inicializado como variable de retorno
-                    val item = resp.getJSONObject(i)
+                    item = resp.getJSONObject(i)
                     val collector = Collector(collectorId = item.getInt("id"),name = item.getString("name"), telephone = item.getString("telephone"), email = item.getString("email"))
                     list.add(i, collector) //se agrega a medida que se procesa la respuesta
                 }
@@ -69,6 +76,7 @@ class NetworkServiceAdapter constructor(context: Context) {
                 cont.resumeWithException(it)
             }))
     }
+
     suspend fun getComments(albumId:Int) = suspendCoroutine<List<Comment>>{ cont->
         requestQueue.add(getRequest("albums/$albumId/comments",
             { response ->
@@ -86,6 +94,7 @@ class NetworkServiceAdapter constructor(context: Context) {
                 cont.resumeWithException(it)
             }))
     }
+
     suspend fun getAlbum(albumId:Int) = suspendCoroutine<Album>{ cont->
         requestQueue.add(getRequest("albums/$albumId",
             { response ->
@@ -123,13 +132,12 @@ class NetworkServiceAdapter constructor(context: Context) {
             { response ->
                 val resp = JSONArray(response)
                 val list = mutableListOf<Artista>()
+                var item:JSONObject? = null
                 for (i in 0 until resp.length()) {
-                    val item = resp.getJSONObject(i)
+                    item = resp.getJSONObject(i)
                     list.add(i, Artista(
                         artistaId = item.getInt("id"),
                         name = item.getString("name"),
-                        date = item.getString("creationDate"),
-                        description = item.getString("description"),
                         image = item.getString("image"),
                         artistaType = BAND_TYPE
                     )) //se agrega a medida que se procesa la respuesta
@@ -140,6 +148,7 @@ class NetworkServiceAdapter constructor(context: Context) {
                 cont.resumeWithException(it)
             }))
     }
+
     suspend fun getBand(artistaId:Int) = suspendCoroutine<Artista>{ cont->
         requestQueue.add(getRequest("bands/$artistaId",
             { response ->
@@ -157,18 +166,18 @@ class NetworkServiceAdapter constructor(context: Context) {
                 cont.resumeWithException(it)
             }))
     }
+
     suspend fun getMusicians() = suspendCoroutine<List<Artista>>{ cont->
         requestQueue.add(getRequest("musicians",
             { response ->
                 val resp = JSONArray(response)
                 val list = mutableListOf<Artista>()
+                var item:JSONObject? = null
                 for (i in 0 until resp.length()) {//inicializado como variable de retorno
-                    val item = resp.getJSONObject(i)
+                    item = resp.getJSONObject(i)
                     list.add(i, Artista(
                         artistaId = item.getInt("id"),
                         name = item.getString("name"),
-                        date = item.getString("birthDate"),
-                        description = item.getString("description"),
                         image = item.getString("image"),
                         artistaType = MUSICIAN_TYPE
                     )) //se agrega a medida que se procesa la respuesta
@@ -179,6 +188,7 @@ class NetworkServiceAdapter constructor(context: Context) {
                 cont.resumeWithException(it)
             }))
     }
+
     suspend fun getMusician(artistaId:Int) = suspendCoroutine<Artista>{ cont->
         requestQueue.add(getRequest("musicians/$artistaId",
             { response ->
