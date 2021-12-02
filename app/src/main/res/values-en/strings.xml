@@ -20,7 +20,6 @@
     <string name="title_register_album">Register Album</string>
     <string name="hint_name_album">Name</string>
     <string name="helper_required">Required</string>
-    <string name="btn_guardar">Save</string>
     <string name="hint_cover_url">URL cover</string>
     <string name="edit_album_message_valid">Invalid fields</string>
     <string name="menu_save">Save</string>
@@ -29,5 +28,6 @@
     <string name="hint_date_album">Release date (yyyy-mm-dd)</string>
     <string name="hint_description_album">Description</string>
     <string name="msg_save_album">Album was saved successfully</string>
+    <string name="detail_collector_title">Collector detail</string>
 </resources>
 

@@ -19,7 +19,7 @@
         android:backgroundTint="@color/design_default_color_primary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right"
+        android:layout_gravity="bottom|end"
         android:contentDescription="@string/title_register_album"
         android:src="@drawable/ic_add"
         android:layout_marginBottom="70dp"/>

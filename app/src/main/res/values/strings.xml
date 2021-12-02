@@ -20,7 +20,6 @@
     <string name="title_register_album">Registrar Album</string>
     <string name="hint_name_album">Nombre del álbum</string>
     <string name="helper_required">Requerido</string>
-    <string name="btn_guardar">Guardar</string>
     <string name="hint_cover_url">URL de la caratula</string>
     <string name="edit_album_message_valid">Campos invalidos</string>
     <string name="menu_save">Guardar</string>
@@ -29,5 +28,6 @@
     <string name="hint_date_album">Fecha de lanzamiento (aaaa-mm-dd)</string>
     <string name="hint_description_album">Descripcion</string>
     <string name="msg_save_album">Se guardo el álbum correctamente</string>
+    <string name="detail_collector_title">Detalle coleccionista</string>
 </resources>
 
