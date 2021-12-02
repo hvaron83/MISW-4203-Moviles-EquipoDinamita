@@ -2,4 +2,5 @@
 <resources>
     <integer name="counter_max_name">50</integer>
     <integer name="lines_url_cover">2</integer>
+    <integer name="counter_max_des">100</integer>
 </resources>

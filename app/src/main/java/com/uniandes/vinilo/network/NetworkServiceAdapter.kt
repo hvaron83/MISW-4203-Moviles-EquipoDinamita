@@ -128,7 +128,7 @@ class NetworkServiceAdapter constructor(context: Context) {
                 cont.resumeWithException(it)
             }))
     }
-    
+
     suspend fun getBands() = suspendCoroutine<List<Artista>>{ cont->
         requestQueue.add(getRequest("bands",
             { response ->

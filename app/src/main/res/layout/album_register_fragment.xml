@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
@@ -15,76 +15,116 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilName"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/hint_name_album"
-            app:helperText="@string/helper_required"
-            app:endIconMode="clear_text"
-            app:counterMaxLength="@integer/counter_max_name"
             app:counterEnabled="true"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            app:counterMaxLength="@integer/counter_max_name"
+            app:endIconMode="clear_text"
+            app:helperText="@string/helper_required">
+
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:maxLength="@integer/counter_max_name"
-                android:inputType="textCapWords"/>
+                android:inputType="textCapWords"
+                android:maxLength="@integer/counter_max_name" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilPhone"
+            android:id="@+id/tilGenre"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="@dimen/common_padding_default"
-            android:hint="@string/title_register_album"
-            app:helperText="@string/helper_required"
+            android:hint="@string/hint_genre_album"
             app:endIconMode="clear_text"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            app:helperText="@string/helper_required">
+
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etPhone"
+                android:id="@+id/etGenre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:maxLength="@integer/counter_max_name"
-                android:inputType="textCapWords"/>
+                android:inputType="textCapWords"
+                android:maxLength="@integer/counter_max_name" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <LinearLayout
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilRecord"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:layout_height="match_parent"
             android:layout_marginTop="@dimen/common_padding_default"
-            android:gravity="center_vertical">
+            android:hint="@string/hint_record_album"
+            app:endIconMode="clear_text"
+            app:helperText="@string/helper_required">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilPhotoUrl"
-                android:layout_width="0dp"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etRecord"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="@string/hint_cover_url"
-                app:helperText="@string/helper_required"
-                app:endIconMode="clear_text"
-                app:startIconDrawable="@drawable/ic_link"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etPhotoUrl"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?attr/textAppearanceCaption"
-                    android:textColor="@color/color_link"
-                    android:minLines="@integer/lines_url_cover"
-                    android:maxLines="@integer/lines_url_cover"
-                    android:inputType="textMultiLine"/>
-            </com.google.android.material.textfield.TextInputLayout>
+                android:inputType="textCapWords"
+                android:maxLength="@integer/counter_max_name" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-            <ImageView
-                android:id="@+id/imgPhoto"
-                android:layout_width="@dimen/photo_size_thumb"
-                android:layout_height="@dimen/photo_size_thumb"
-                android:src="@drawable/ic_image"
-                android:layout_marginStart="@dimen/common_padding_default"
-                android:contentDescription="@string/description_img_photo"/>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilReleaseDate"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/common_padding_default"
+            android:hint="@string/hint_date_album"
+            app:endIconMode="clear_text"
+            app:helperText="@string/helper_required">
 
-        </LinearLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etReleaseDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="datetime"
+                android:maxLength="@integer/counter_max_name" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilDescription"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/common_padding_default"
+            android:hint="@string/hint_description_album"
+            app:endIconMode="clear_text"
+            app:helperText="@string/helper_required">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textLongMessage"
+                android:maxLength="@integer/counter_max_des" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilPhotoUrl"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/common_padding_default"
+            android:hint="@string/hint_cover_url"
+            app:helperText="@string/helper_required"
+            app:startIconDrawable="@drawable/ic_link">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPhotoUrl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                android:maxLines="@integer/lines_url_cover"
+                android:minLines="@integer/lines_url_cover"
+                android:textAppearance="?attr/textAppearanceCaption"
+                android:textColor="@color/color_link" />
+        </com.google.android.material.textfield.TextInputLayout>
+
 
     </LinearLayout>
 

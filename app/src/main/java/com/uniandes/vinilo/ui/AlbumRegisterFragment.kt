@@ -3,20 +3,15 @@ package com.uniandes.vinilo.ui
 import android.content.Context
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import android.text.Editable
 import android.view.*
 import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
-import android.widget.Toast
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputLayout
 import com.uniandes.vinilo.R
 import com.uniandes.vinilo.databinding.AlbumRegisterFragmentBinding
 import com.uniandes.vinilo.models.Album
 import com.uniandes.vinilo.viewmodels.AlbumRegisterViewModel
-import com.uniandes.vinilo.viewmodels.AlbumViewModel
 
 class AlbumRegisterFragment : Fragment() {
 
@@ -39,7 +34,6 @@ class AlbumRegisterFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupActionBar()
-        //setupTextFields()
     }
 
     private fun setupActionBar() {
@@ -49,28 +43,6 @@ class AlbumRegisterFragment : Fragment() {
 
         setHasOptionsMenu(true)
     }
-
-    /*private fun setupTextFields() {
-        with(mBinding) {
-            etName.addTextChangedListener { validateFields(tilName) }
-            etPhone.addTextChangedListener { validateFields(tilPhone) }
-            etPhotoUrl.addTextChangedListener {
-                validateFields(tilPhotoUrl)
-                loadImage(it.toString().trim())
-            }
-        }
-    }*/
-
-    private fun loadImage(url: String){
-        Glide.with(this)
-            .load(url)
-            .diskCacheStrategy(DiskCacheStrategy.ALL)
-            .centerCrop()
-            .into(mBinding.imgPhoto)
-    }
-
-
-    private fun String.editable(): Editable = Editable.Factory.getInstance().newEditable(this)
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_save, menu)
@@ -84,18 +56,22 @@ class AlbumRegisterFragment : Fragment() {
                 true
             }
             R.id.action_save -> {
-                if (validateFields(mBinding.tilPhotoUrl, mBinding.tilPhone, mBinding.tilName)){
+                if (validateFields(mBinding.tilPhotoUrl, mBinding.tilRecord, mBinding.tilName, mBinding.tilGenre, mBinding.tilDescription, mBinding.tilReleaseDate)){
                     album = Album(null)
                     with(album){
                         name = mBinding.etName.text.toString().trim()
-                        genre = mBinding.etPhone.text.toString().trim()
+                        genre = mBinding.etGenre.text.toString().trim()
                         cover = mBinding.etPhotoUrl.text.toString().trim()
-                        description = "prueba"
-                        recordLabel = "Elektra"
-                        releaseDate = "1984-08-01T00:00:00-05:00"
+                        description = mBinding.etDescription.text.toString()
+                        recordLabel = mBinding.etRecord.text.toString().trim()
+                        releaseDate = mBinding.etReleaseDate.text.toString().trim()
                     }
 
                     albumRegisterViewModel.saveAlbum(album)
+                    Snackbar.make(mBinding.root,
+                        R.string.msg_save_album,
+                        Snackbar.LENGTH_SHORT).show()
+                    mActivity?.onBackPressed()
 
                 }
                 true
@@ -121,30 +97,6 @@ class AlbumRegisterFragment : Fragment() {
         return isValid
     }
 
-    private fun validateFields(): Boolean {
-        var isValid = true
-
-        if (mBinding.etPhotoUrl.text.toString().trim().isEmpty()){
-            mBinding.tilPhotoUrl.error = getString(R.string.helper_required)
-            mBinding.etPhotoUrl.requestFocus()
-            isValid = false
-        }
-
-        if (mBinding.etPhone.text.toString().trim().isEmpty()){
-            mBinding.tilPhone.error = getString(R.string.helper_required)
-            mBinding.etPhone.requestFocus()
-            isValid = false
-        }
-
-        if (mBinding.etName.text.toString().trim().isEmpty()){
-            mBinding.tilName.error = getString(R.string.helper_required)
-            mBinding.etName.requestFocus()
-            isValid = false
-        }
-
-        return isValid
-    }
-
     private fun hideKeyboard(){
         val imm = mActivity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         if (view != null){
@@ -159,7 +111,7 @@ class AlbumRegisterFragment : Fragment() {
 
     override fun onDestroy() {
         mActivity?.supportActionBar?.setDisplayHomeAsUpEnabled(false)
-        mActivity?.supportActionBar?.title = getString(R.string.app_name)
+        mActivity?.supportActionBar?.title = getString(R.string.title_albums)
 
         setHasOptionsMenu(false)
         super.onDestroy()
