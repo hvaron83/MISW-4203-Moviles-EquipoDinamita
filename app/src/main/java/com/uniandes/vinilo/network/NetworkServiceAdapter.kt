@@ -209,6 +209,21 @@ class NetworkServiceAdapter constructor(context: Context) {
             }))
     }
 
+    suspend fun getCollector(collectorId:Int) = suspendCoroutine<Collector>{ cont->
+        requestQueue.add(getRequest("collectors/$collectorId",
+            { response ->
+                val resp = JSONObject(response)
+                cont.resume(Collector(
+                    collectorId = resp.getInt("id"),
+                    name = resp.getString("name"),
+                    telephone = resp.getString("telephone"),
+                    email = resp.getString("email")
+                ))
+            },
+            {
+                cont.resumeWithException(it)
+            }))
+    }
 
     private fun getRequest(path:String, responseListener: Response.Listener<String>, errorListener: Response.ErrorListener): StringRequest {
         return StringRequest(Request.Method.GET, BASE_URL+path, responseListener,errorListener)
@@ -216,8 +231,5 @@ class NetworkServiceAdapter constructor(context: Context) {
     private fun postRequest(path: String, body: JSONObject,  responseListener: Response.Listener<JSONObject>, errorListener: Response.ErrorListener ):JsonObjectRequest{
         return  JsonObjectRequest(Request.Method.POST, BASE_URL+path, body, responseListener, errorListener)
     }
-    /*
-    private fun putRequest(path: String, body: JSONObject,  responseListener: Response.Listener<JSONObject>, errorListener: Response.ErrorListener ):JsonObjectRequest{
-        return  JsonObjectRequest(Request.Method.PUT, BASE_URL+path, body, responseListener, errorListener)
-    }*/
+
 }

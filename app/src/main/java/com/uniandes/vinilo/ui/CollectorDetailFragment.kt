@@ -1,14 +1,14 @@
 package com.uniandes.vinilo.ui
 
+import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.util.Log
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.net.toUri
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
@@ -16,20 +16,22 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.uniandes.vinilo.R
 import com.uniandes.vinilo.databinding.AlbumDetailFragmentBinding
+import com.uniandes.vinilo.databinding.CollectorDetailFragmentBinding
 import com.uniandes.vinilo.models.Album
 import com.uniandes.vinilo.viewmodels.AlbumDetailViewModel
+import com.uniandes.vinilo.viewmodels.CollectorDetailViewModel
 
+class CollectorDetailFragment : Fragment() {
 
-class AlbumDetailFragment : Fragment() {
-    private var _binding: AlbumDetailFragmentBinding? = null
+    private var _binding: CollectorDetailFragmentBinding? = null
     private val binding get() = _binding!!
-    private lateinit var viewModel: AlbumDetailViewModel
+    private lateinit var viewModel: CollectorDetailViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = AlbumDetailFragmentBinding.inflate(inflater, container, false)
+        _binding = CollectorDetailFragmentBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -42,24 +44,17 @@ class AlbumDetailFragment : Fragment() {
         val activity = requireNotNull(this.activity) {
             "You can only access the viewModel after onActivityCreated()"
         }
-        activity.actionBar?.title = getString(R.string.title_comments)
-        val args: AlbumDetailFragmentArgs  by navArgs()
-        Log.d("Args", args.albumId.toString())
-        viewModel = ViewModelProvider(this, AlbumDetailViewModel.Factory(activity.application, args.albumId))[AlbumDetailViewModel::class.java]
-        viewModel.album.observe(viewLifecycleOwner, {
+        val args: CollectorDetailFragmentArgs  by navArgs()
+        Log.d("Args", args.collectorId.toString())
+        viewModel = ViewModelProvider(this, CollectorDetailViewModel.Factory(activity.application, args.collectorId))[CollectorDetailViewModel::class.java]
+        viewModel.collector.observe(viewLifecycleOwner, {
             it.apply {
-               binding.album = this
-                loadImage(this)
+                binding.collector = this
             }
         })
         viewModel.eventNetworkError.observe(viewLifecycleOwner, { isNetworkError ->
             if (isNetworkError) onNetworkError()
         })
-        binding.comentariosButton.setOnClickListener{
-            val action = AlbumDetailFragmentDirections.actionAlbumFragmentToCommentFragment(args.albumId)
-            // Navigate using that action
-            findNavController().navigate(action)
-        }
 
 
     }
@@ -74,19 +69,6 @@ class AlbumDetailFragment : Fragment() {
             viewModel.onNetworkErrorShown()
         }
     }
-
-    private fun loadImage(album: Album){
-        Glide.with(this)
-            .load(album.cover.toUri().buildUpon().scheme("https").build())
-            .apply(
-                RequestOptions()
-                    .placeholder(R.drawable.ic_loading_animation)
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .error(R.drawable.ic_broken_image))
-            .into(binding.albumCover)
-    }
-
-
 
 
 }

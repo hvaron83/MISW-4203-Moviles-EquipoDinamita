@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="collector"
+            type="com.uniandes.vinilo.models.Collector" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.CollectorDetailFragment">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/common_padding_min">
+
+            <TextView
+                android:id="@+id/tvNameCol"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/common_padding_default"
+                android:text="@{collector.name}"
+                android:textAppearance="?attr/textAppearanceHeadline6"
+                tools:text="Nombre del coleccionista" />
+
+            <TextView
+                android:id="@+id/tvTelephone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/common_padding_min"
+                android:text="@{collector.telephone}"
+                android:textAppearance="?attr/textAppearanceBody2"
+                android:textColor="?android:attr/textColorSecondary"
+                tools:text="68746255564" />
+
+            <TextView
+                android:id="@+id/tvEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/common_padding_min"
+                android:text="@{collector.email}"
+                android:textAppearance="?attr/textAppearanceBody2"
+                android:textColor="?android:attr/textColorSecondary"
+                tools:text="coleccionista@gmail.com" />
+
+
+        </LinearLayout>
+
+
+    </FrameLayout>
+</layout>

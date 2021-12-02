@@ -7,5 +7,4 @@
     <dimen name="common_padding_middle">24dp</dimen>
     <dimen name="dimen_photo_height">194dp</dimen>
     <dimen name="common_margin_min">5dp</dimen>
-    <dimen name="photo_size_thumb">88dp</dimen>
 </resources>

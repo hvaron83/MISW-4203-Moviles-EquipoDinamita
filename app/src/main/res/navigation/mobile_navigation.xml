@@ -21,7 +21,21 @@
         android:id="@+id/navigation_collector"
         android:name="com.uniandes.vinilo.ui.CollectorFragment"
         android:label="@string/title_collectors"
-        tools:layout="@layout/collector_fragment" />
+        tools:layout="@layout/collector_fragment" >
+        <action
+            android:id="@+id/action_collectorFragment_to_collectorDetailFragment"
+            app:destination="@id/detailCollectorFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/detailCollectorFragment"
+        android:name="com.uniandes.vinilo.ui.CollectorDetailFragment"
+        android:label="@string/detail_collector_title"
+        tools:layout="@layout/collector_detail_fragment" >
+        <argument
+            android:name="collectorId"
+            app:argType="integer" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_artista"
