@@ -107,6 +107,7 @@ class NetworkServiceAdapter constructor(context: Context) {
                 cont.resumeWithException(it)
             }))
     }
+
     suspend fun addAlbum(album:Album) = suspendCoroutine<Album>{ cont->
         val jsonString = Gson().toJson(album)
         requestQueue.add(postRequest("albums", JSONObject(jsonString),
@@ -127,6 +128,7 @@ class NetworkServiceAdapter constructor(context: Context) {
                 cont.resumeWithException(it)
             }))
     }
+    
     suspend fun getBands() = suspendCoroutine<List<Artista>>{ cont->
         requestQueue.add(getRequest("bands",
             { response ->
