@@ -12,9 +12,6 @@
         <action
             android:id="@+id/action_albumFragment_to_albumDetailFragment"
             app:destination="@id/detailAlbumFragment" />
-        <action
-            android:id="@+id/action_albumFragment_to_albumRegisterFragment"
-            app:destination="@id/registerAlbumFragment" />
     </fragment>
 
     <fragment
@@ -31,13 +28,6 @@
         <action
             android:id="@+id/action_artistaFragment_to_artistaDetailFragment"
             app:destination="@id/detailArtistaFragment" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/registerAlbumFragment"
-        android:name="com.uniandes.vinilo.ui.AlbumRegisterFragment"
-        android:label="@string/title_register_album"
-        tools:layout="@layout/album_register_fragment" >
     </fragment>
 
     <fragment
