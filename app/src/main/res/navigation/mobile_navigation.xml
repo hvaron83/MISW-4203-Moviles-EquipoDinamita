@@ -17,13 +17,13 @@
     <fragment
         android:id="@+id/navigation_collector"
         android:name="com.uniandes.vinilo.ui.CollectorFragment"
-        android:label="@string/title_collector"
+        android:label="@string/title_collectors"
         tools:layout="@layout/collector_fragment" />
 
     <fragment
         android:id="@+id/navigation_artista"
         android:name="com.uniandes.vinilo.ui.ArtistaFragment"
-        android:label="@string/title_artista"
+        android:label="@string/title_artistas"
         tools:layout="@layout/artista_fragment" >
         <action
             android:id="@+id/action_artistaFragment_to_artistaDetailFragment"
@@ -54,6 +54,7 @@
     </fragment>
 
     <fragment
+
         android:id="@+id/detailArtistaFragment"
         android:name="com.uniandes.vinilo.ui.ArtistaDetailFragment"
         android:label="@string/detail_artista_title"
