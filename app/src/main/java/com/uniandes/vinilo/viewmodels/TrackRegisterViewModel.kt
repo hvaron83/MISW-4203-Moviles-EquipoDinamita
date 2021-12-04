@@ -2,13 +2,13 @@ package com.uniandes.vinilo.viewmodels
 
 import android.app.Application
 import androidx.lifecycle.*
-import com.uniandes.vinilo.models.Album
+import com.uniandes.vinilo.models.Track
 import com.uniandes.vinilo.repositories.AlbumRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class AlbumRegisterViewModel(application: Application) : AndroidViewModel(application){
+class TrackRegisterViewModel(application: Application) : AndroidViewModel(application){
     private val albumsRepository = AlbumRepository(application)
 
 
@@ -23,11 +23,11 @@ class AlbumRegisterViewModel(application: Application) : AndroidViewModel(applic
         get() = _isNetworkErrorShown
 
 
-    public fun saveAlbum(album: Album){
+    public fun saveTrack(track: Track){
         try {
             viewModelScope.launch(Dispatchers.Default){
                 withContext(Dispatchers.IO){
-                    albumsRepository.guardarAlbum(album)
+                    albumsRepository.guardarTrack(track)
                 }
                 _eventNetworkError.postValue(false)
                 _isNetworkErrorShown.postValue(false)
@@ -44,9 +44,9 @@ class AlbumRegisterViewModel(application: Application) : AndroidViewModel(applic
 
     class Factory(val app: Application) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            if (modelClass.isAssignableFrom(AlbumRegisterViewModel::class.java)) {
+            if (modelClass.isAssignableFrom(TrackRegisterViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")
-                return AlbumRegisterViewModel(app) as T
+                return TrackRegisterViewModel(app) as T
             }
             throw IllegalArgumentException("Unable to construct viewmodel")
         }

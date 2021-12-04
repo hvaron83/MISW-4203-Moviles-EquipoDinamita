@@ -10,10 +10,7 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
-import com.uniandes.vinilo.models.Album
-import com.uniandes.vinilo.models.Artista
-import com.uniandes.vinilo.models.Collector
-import com.uniandes.vinilo.models.Comment
+import com.uniandes.vinilo.models.*
 import org.json.JSONArray
 import org.json.JSONObject
 import kotlin.coroutines.resume
@@ -219,6 +216,26 @@ class NetworkServiceAdapter constructor(context: Context) {
                     telephone = resp.getString("telephone"),
                     email = resp.getString("email")
                 ))
+            },
+            {
+                cont.resumeWithException(it)
+            }))
+    }
+
+    suspend fun addTracktoAlbum(track: Track) = suspendCoroutine<Track>{ cont->
+        val idAlbum = track.albumId
+        track.albumId = null
+        val jsonString = Gson().toJson(track)
+        requestQueue.add(postRequest("albums/${idAlbum}/tracks", JSONObject(jsonString),
+            { response ->
+                val track = Track(
+                    id = response.getInt("id"),
+                    name = response.getString("name"),
+                    duration = response.getString("duration"),
+                    albumId = idAlbum
+                )
+
+                cont.resume(track)
             },
             {
                 cont.resumeWithException(it)
