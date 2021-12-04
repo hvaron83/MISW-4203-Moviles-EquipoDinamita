@@ -48,7 +48,7 @@ class AlbumDetailFragment : Fragment() {
         viewModel = ViewModelProvider(this, AlbumDetailViewModel.Factory(activity.application, args.albumId))[AlbumDetailViewModel::class.java]
         viewModel.album.observe(viewLifecycleOwner, {
             it.apply {
-               binding.album = this
+                binding.album = this
                 loadImage(this)
             }
         })
@@ -57,6 +57,11 @@ class AlbumDetailFragment : Fragment() {
         })
         binding.comentariosButton.setOnClickListener{
             val action = AlbumDetailFragmentDirections.actionAlbumFragmentToCommentFragment(args.albumId)
+            // Navigate using that action
+            findNavController().navigate(action)
+        }
+        binding.addTrackButton.setOnClickListener{
+            val action = AlbumDetailFragmentDirections.actionAlbumFragmentToTrackFragment(args.albumId)
             // Navigate using that action
             findNavController().navigate(action)
         }
