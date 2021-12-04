@@ -2,7 +2,7 @@ package com.uniandes.vinilo;
 
 
 import static androidx.test.espresso.Espresso.onView;
-import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.action.ViewActions.*;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.isEnabled;
@@ -70,6 +70,104 @@ public class MainActivityTest {
         int n = getRecyclerViewCount(m);
         Assert.assertEquals(true, n > 0);
         return;
+    }
+
+    @Test
+    public void testAddTracktoAlbum() {
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        //Ver el detalle del primer album
+        onView(withId(R.id.albumsRv)).perform(RecyclerViewActions.actionOnItemAtPosition(0,click()));
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        //Nasvegar a pantalla asociar tracks
+        onView(withId(R.id.addTrackButton)).perform(click());
+        //Llenar la informacion del track
+        onView(
+                allOf(
+                        withId(R.id.etName),
+                        isDisplayed()
+                )
+        ).perform(replaceText("cancion"), closeSoftKeyboard());
+
+        onView(
+                allOf(
+                        withId(R.id.etDuration),
+                        isDisplayed()
+                )
+        ).perform(replaceText("03:03"), closeSoftKeyboard());
+        onView(withId(R.id.action_save)).perform(click());
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testAddAlbum() {
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        //Nasvegar a pantalla crear album
+        onView(withId(R.id.fab)).perform(click());
+        //Llenar la informacion del track
+        onView(
+                allOf(
+                        withId(R.id.etName),
+                        isDisplayed()
+                )
+        ).perform(replaceText("album"), closeSoftKeyboard());
+
+        onView(
+                allOf(
+                        withId(R.id.etGenre),
+                        isDisplayed()
+                )
+        ).perform(replaceText("Salsa"), closeSoftKeyboard());
+
+        onView(
+                allOf(
+                        withId(R.id.etRecord),
+                        isDisplayed()
+                )
+        ).perform(replaceText("Elektra"), closeSoftKeyboard());
+
+        onView(
+                allOf(
+                        withId(R.id.etReleaseDate),
+                        isDisplayed()
+                )
+        ).perform(replaceText("1984-04-27"), closeSoftKeyboard());
+
+        onView(
+                allOf(
+                        withId(R.id.etDescription),
+                        isDisplayed()
+                )
+        ).perform(replaceText("Album test"), closeSoftKeyboard());
+
+        onView(
+                allOf(
+                        withId(R.id.etPhotoUrl),
+                        isDisplayed()
+                )
+        ).perform(replaceText("https://i.pinimg.com/170x/4b/00/da/4b00dae36c4984c807ab211cd956c2c8.jpg"), closeSoftKeyboard());
+
+        onView(withId(R.id.action_save)).perform(click());
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     public static int getRecyclerViewCount(Matcher matcher) {

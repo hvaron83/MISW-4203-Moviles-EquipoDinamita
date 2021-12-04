@@ -29,5 +29,9 @@
     <string name="hint_description_album">Descripcion</string>
     <string name="msg_save_album">Se guardo el álbum correctamente</string>
     <string name="detail_collector_title">Detalle coleccionista</string>
+    <string name="title_register_track">Asociar canción</string>
+    <string name="hint_name_cancion">Nombre de la canción</string>
+    <string name="hint_duration_track">Duración</string>
+    <string name="btn_add_track">Asociar Canción</string>
 </resources>
 
