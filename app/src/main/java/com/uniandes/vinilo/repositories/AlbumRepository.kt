@@ -5,6 +5,7 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.util.Log
 import com.uniandes.vinilo.models.Album
+import com.uniandes.vinilo.models.Track
 import com.uniandes.vinilo.network.CacheManager
 import com.uniandes.vinilo.network.NetworkServiceAdapter
 import kotlinx.serialization.decodeFromString
@@ -35,6 +36,17 @@ class AlbumRepository(val application: Application) {
         return NetworkServiceAdapter.getInstance(application).getAlbum(albumId)
     }
 
+    suspend fun guardarTrack(track: Track): Track {
+        return NetworkServiceAdapter.getInstance(application).addTracktoAlbum(track)
+    }
+
+    suspend fun guardarAlbum(album: Album): Album {
+        //Mirar el metodo de cache por el momento se elimina para volver a consultar
+        val a = NetworkServiceAdapter.getInstance(application).addAlbum(album)
+        addAlbum(a)
+        return a
+    }
+
     private fun getAlbums(): List<Album> {
         val prefs = CacheManager.getPrefs(application.baseContext, CacheManager.ALBUMS_SPREFS)
         if(prefs.contains("albums")){
@@ -57,6 +69,22 @@ class AlbumRepository(val application: Application) {
                 putString("albums", store)
                 apply()
             })
+        }
+    }
+
+    private fun addAlbum(album: Album) {
+        val prefs = CacheManager.getPrefs(application.baseContext, CacheManager.ALBUMS_SPREFS)
+        if(prefs.contains("albums")){
+            val storedVal = prefs.getString("albums", "")
+            if(!storedVal.isNullOrBlank()){
+                val list:MutableList<Album>  = format.decodeFromString(storedVal)
+                list.add(0,album)
+                val store = format.encodeToString(list)
+                with(prefs.edit(), {
+                    putString("albums", store)
+                    apply()
+                })
+            }
         }
     }
 

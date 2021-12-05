@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">Vinilos</string>
+    <string name="title_home">Albums</string>
+    <string name="title_artista">Artists</string>
+    <string name="title_collector">Collectors</string>
+    <string name="detail_album_title">Album detail</string>
+    <string name="description_img_photo">Album image</string>
+    <string name="description_img_photo_artista">Artist image</string>
+    <string name="detail_artista_title">Artist detail</string>
+    <string name="title_albums">Album List</string>
+    <string name="title_artistas">Artist List</string>
+    <string name="title_collectors">Collector List</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="txt_no_comments">There are no comments</string>
+    <string name="title_comments">Comments</string>
+    <string name="imagen_del_album">Album image</string>
+    <string name="btn_ver_comentarios">See comments</string>
+    <string name="descripcion_album">Item album</string>
+    <string name="descripcion_coleccionista">Item collector</string>
+    <string name="title_register_album">Register Album</string>
+    <string name="hint_name_album">Name</string>
+    <string name="helper_required">Required</string>
+    <string name="hint_cover_url">URL cover</string>
+    <string name="edit_album_message_valid">Invalid fields</string>
+    <string name="menu_save">Save</string>
+    <string name="hint_genre_album">Genre</string>
+    <string name="hint_record_album">Record label</string>
+    <string name="hint_date_album">Release date (yyyy-mm-dd)</string>
+    <string name="hint_description_album">Description</string>
+    <string name="msg_save_album">Album was saved successfully</string>
+    <string name="detail_collector_title">Collector detail</string>
+    <string name="title_register_track">Add track</string>
+    <string name="hint_name_cancion">Name</string>
+    <string name="hint_duration_track">Duration</string>
+    <string name="btn_add_track">Add Track</string>
+    <string name="msg_save_track">Track was saved successfully</string>
+    <string name="date_release_invalid">Release date invalid. Format valid is yyyy-mm-dd</string>
+    <string name="value_textview">TextView</string>
+</resources>
+

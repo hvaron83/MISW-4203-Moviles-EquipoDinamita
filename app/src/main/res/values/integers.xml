@@ -1,2 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <integer name="counter_max_name">50</integer>
+    <integer name="lines_url_cover">2</integer>
+    <integer name="counter_max_des">100</integer>
+</resources>

@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 import android.net.ConnectivityManager
 import android.util.Log
+import com.uniandes.vinilo.models.Album
 import com.uniandes.vinilo.models.Collector
 import com.uniandes.vinilo.network.CacheManager
 import com.uniandes.vinilo.network.NetworkServiceAdapter
@@ -28,6 +29,11 @@ class CollectorsRepository (val application: Application){
                 collectors
             }
         } else collectors
+    }
+
+    suspend fun refreshDataDetail(collectorId: Int): Collector {
+        //Determinar la fuente de datos que se va a utilizar. Si es necesario consultar la red, ejecutar el siguiente código
+        return NetworkServiceAdapter.getInstance(application).getCollector(collectorId)
     }
 
     private fun getCollectors(): List<Collector> {
