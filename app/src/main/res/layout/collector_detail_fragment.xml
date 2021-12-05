@@ -19,7 +19,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="@dimen/common_padding_min">
+            android:padding="@dimen/common_padding_min"
+            tools:ignore="UselessParent">
 
             <TextView
                 android:id="@+id/tvNameCol"

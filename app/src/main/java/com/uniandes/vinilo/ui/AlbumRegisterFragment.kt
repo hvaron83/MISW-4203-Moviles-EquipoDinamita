@@ -1,10 +1,12 @@
 package com.uniandes.vinilo.ui
 
+import android.annotation.SuppressLint
 import android.content.Context
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.view.*
 import android.view.inputmethod.InputMethodManager
+import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputLayout
@@ -12,6 +14,7 @@ import com.uniandes.vinilo.R
 import com.uniandes.vinilo.databinding.AlbumRegisterFragmentBinding
 import com.uniandes.vinilo.models.Album
 import com.uniandes.vinilo.viewmodels.AlbumRegisterViewModel
+import java.text.SimpleDateFormat
 
 class AlbumRegisterFragment : Fragment() {
 
@@ -28,6 +31,16 @@ class AlbumRegisterFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle? ): View? {
         mBinding = AlbumRegisterFragmentBinding.inflate(inflater, container, false)
+
+        val generos = resources.getStringArray(R.array.generos)
+        val arrayAdapterGenero = ArrayAdapter(requireContext(), R.layout.dropdown_generos, generos)
+        mBinding.autocompeteGenre.setAdapter(arrayAdapterGenero)
+
+        val sellos = resources.getStringArray(R.array.recordlabel)
+        val arrayAdapterRecord = ArrayAdapter(requireContext(), R.layout.dropdown_record, sellos)
+        mBinding.autocompeteRecord.setAdapter(arrayAdapterRecord)
+
+
         return mBinding.root
     }
 
@@ -56,14 +69,15 @@ class AlbumRegisterFragment : Fragment() {
                 true
             }
             R.id.action_save -> {
-                if (validateFields(mBinding.tilPhotoUrl, mBinding.tilRecord, mBinding.tilName, mBinding.tilGenre, mBinding.tilDescription, mBinding.tilReleaseDate)){
+                if (validateFields(mBinding.tilPhotoUrl, mBinding.tilRecord, mBinding.tilName, mBinding.tilGenre, mBinding.tilDescription, mBinding.tilReleaseDate)
+                    && validateDate(mBinding.tilReleaseDate)){
                     album = Album(null)
                     with(album){
                         name = mBinding.etName.text.toString().trim()
-                        genre = mBinding.etGenre.text.toString().trim()
+                        genre = mBinding.autocompeteGenre.text.toString().trim()
                         cover = mBinding.etPhotoUrl.text.toString().trim()
                         description = mBinding.etDescription.text.toString()
-                        recordLabel = mBinding.etRecord.text.toString().trim()
+                        recordLabel = mBinding.autocompeteRecord.text.toString().trim()
                         releaseDate = mBinding.etReleaseDate.text.toString().trim()
                     }
 
@@ -94,6 +108,26 @@ class AlbumRegisterFragment : Fragment() {
             R.string.edit_album_message_valid,
             Snackbar.LENGTH_SHORT).show()
 
+        return isValid
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    private fun validateDate(textDate: TextInputLayout): Boolean{
+        var isValid = true
+        try {
+            var dateStr = textDate.editText?.text.toString().trim()
+            if (!dateStr.isEmpty()){
+                val dateFormat = SimpleDateFormat("yyyy-MM-dd")
+                val date = dateFormat.parse(dateStr)
+                println(date)
+            }
+        } catch (e: Exception) {
+            isValid = false
+            print(e)
+        }
+        if (!isValid) Snackbar.make(mBinding.root,
+            R.string.date_release_invalid,
+            Snackbar.LENGTH_SHORT).show()
         return isValid
     }
 

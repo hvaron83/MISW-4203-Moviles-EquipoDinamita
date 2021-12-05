@@ -69,7 +69,7 @@ class TrackRegisterFragment : Fragment() {
 
                     trackRegisterViewModel.saveTrack(track)
                     Snackbar.make(mBinding.root,
-                        R.string.msg_save_album,
+                        R.string.msg_save_track,
                         Snackbar.LENGTH_SHORT).show()
                     mActivity?.onBackPressed()
 

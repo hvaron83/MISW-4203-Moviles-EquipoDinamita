@@ -129,20 +129,6 @@ public class MainActivityTest {
 
         onView(
                 allOf(
-                        withId(R.id.etGenre),
-                        isDisplayed()
-                )
-        ).perform(replaceText("Salsa"), closeSoftKeyboard());
-
-        onView(
-                allOf(
-                        withId(R.id.etRecord),
-                        isDisplayed()
-                )
-        ).perform(replaceText("Elektra"), closeSoftKeyboard());
-
-        onView(
-                allOf(
                         withId(R.id.etReleaseDate),
                         isDisplayed()
                 )
