@@ -53,6 +53,17 @@
                     />
 
                 <TextView
+                    android:id="@+id/tvRecord"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    tools:text="Record label"
+                    android:text="@{album.recordLabel}"
+                    android:textAppearance="?attr/textAppearanceBody2"
+                    android:textColor="?android:attr/textColorSecondary"
+                    />
+
+                <TextView
                     android:id="@+id/tvDateRelease"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

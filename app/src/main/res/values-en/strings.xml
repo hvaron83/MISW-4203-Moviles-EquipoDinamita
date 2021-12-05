@@ -33,5 +33,8 @@
     <string name="hint_name_cancion">Name</string>
     <string name="hint_duration_track">Duration</string>
     <string name="btn_add_track">Add Track</string>
+    <string name="msg_save_track">Track was saved successfully</string>
+    <string name="date_release_invalid">Release date invalid. Format valid is yyyy-mm-dd</string>
+    <string name="value_textview">TextView</string>
 </resources>
 
